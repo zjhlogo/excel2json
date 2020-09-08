@@ -1,10 +1,11 @@
-﻿using FastColoredTextBoxNS;
+﻿using ScintillaNET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using VPKSoft.ScintillaLexers;
 
 namespace excel2json.GUI
 {
@@ -19,14 +20,8 @@ namespace excel2json.GUI
         private string mCurrentXlsx;
 
         // 支持语法高亮的文本框
-        private FastColoredTextBox mJsonTextBox;
-        private FastColoredTextBox mCSharpTextBox;
-
-
-        // 文本框的样式
-        private TextStyle mBrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Regular);
-        private TextStyle mMagentaStyle = new TextStyle(Brushes.Magenta, null, FontStyle.Regular);
-        private TextStyle mGreenStyle = new TextStyle(Brushes.Green, null, FontStyle.Regular);
+        private Scintilla mJsonTextBox;
+        private Scintilla mCSharpTextBox;
 
         // 导出数据相关的按钮，方便整体Enable/Disable
         private List<ToolStripButton> mExportButtonList;
@@ -43,11 +38,10 @@ namespace excel2json.GUI
 
             //-- syntax highlight text box
             mJsonTextBox = createTextBoxInTab(this.tabPageJSON);
-            mJsonTextBox.Language = Language.Custom;
-            mJsonTextBox.TextChanged += new EventHandler<TextChangedEventArgs>(this.jsonTextChanged);
+            ScintillaLexers.CreateLexer(mJsonTextBox, LexerEnumerations.LexerType.JavaScript);
 
             mCSharpTextBox = createTextBoxInTab(this.tabCSharp);
-            mCSharpTextBox.Language = Language.CSharp;
+            ScintillaLexers.CreateLexer(mCSharpTextBox, LexerEnumerations.LexerType.Cs);
 
             //-- componet init states
             this.comboBoxType.SelectedIndex = 0;
@@ -93,27 +87,13 @@ namespace excel2json.GUI
         /// </summary>
         /// <param name="tab">TabPage容器控件</param>
         /// <returns>新建的Text Box控件</returns>
-        private FastColoredTextBox createTextBoxInTab(TabPage tab)
+        private Scintilla createTextBoxInTab(TabPage tab)
         {
-            FastColoredTextBox textBox = new FastColoredTextBox();
+            Scintilla textBox = new Scintilla();
             textBox.Dock = DockStyle.Fill;
             textBox.Font = new Font("Microsoft YaHei", 11F);
             tab.Controls.Add(textBox);
             return textBox;
-        }
-
-        /// <summary>
-        /// 设置Json文本高亮格式
-        /// </summary>
-        private void jsonTextChanged(object sender, TextChangedEventArgs e)
-        {
-            e.ChangedRange.ClearStyle(mBrownStyle, mMagentaStyle, mGreenStyle);
-            //allow to collapse brackets block
-            e.ChangedRange.SetFoldingMarkers("{", "}");
-            //string highlighting
-            e.ChangedRange.SetStyle(mBrownStyle, @"""""|@""""|''|@"".*?""|(?<!@)(?<range>"".*?[^\\]"")|'.*?[^\\]'");
-            //number highlighting
-            e.ChangedRange.SetStyle(mGreenStyle, @"\b\d+[\.]?\d*([eE]\-?\d+)?[lLdDfF]?\b|\b0x[a-fA-F\d]+\b");
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace excel2json
                 this.ForceSheetName = false;
             }
 
-            [Option('e', "excel", Required = true, HelpText = "input excel file path.")]
+            [Option('i', "input", Required = true, HelpText = "input excel file path.")]
             public string ExcelPath {
                 get;
                 set;
@@ -44,7 +44,7 @@ namespace excel2json
                 set;
             }
 
-            [Option('c', "encoding", Required = false, DefaultValue = "utf8-nobom", HelpText = "export file encoding.")]
+            [Option('e', "encoding", Required = false, DefaultValue = "utf8-nobom", HelpText = "export file encoding.")]
             public string Encoding {
                 get;
                 set;
@@ -80,7 +80,7 @@ namespace excel2json
                 set;
             }
 
-            [Option('l', "cell_json", Required = false, DefaultValue = false, HelpText = "convert json string in cell")]
+            [Option('c', "cell_json", Required = false, DefaultValue = false, HelpText = "convert json string in cell")]
             public bool CellJson {
                 get;
                 set;

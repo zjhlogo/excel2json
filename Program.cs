@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
@@ -103,7 +102,7 @@ namespace excel2json
             }
 
             //-- Load Excel
-            ExcelLoader excel = new ExcelLoader(excelPath, header);
+            ExcelLoader excel = new ExcelLoader(excelPath);
 
             //-- export
             JsonExporter exporter = new JsonExporter(excel, options.Lowcase, options.ExportArray, dateFormat, options.ForceSheetName, header, options.ExcludePrefix, options.CellJson);

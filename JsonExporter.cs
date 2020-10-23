@@ -15,6 +15,30 @@ namespace excel2json
         string mContext = "";
         int mHeaderRows = 0;
 
+        public enum ParseMode
+        {
+            Unknown,
+            RowMajor,
+            ColumnMajor,
+        }
+
+        public class ColumnData
+        {
+            public string type;
+            public string name;
+            public string desc;
+            public List<string> datas = new List<string>();
+        }
+
+        public class TableInfo
+        {
+            public ParseMode parseMode = ParseMode.Unknown;
+            public string tableName;
+            public int startRow;
+            public int endRow;
+            public List<ColumnData> columnDatas = new List<ColumnData>();
+        }
+
         public string context {
             get {
                 return mContext;
@@ -82,19 +106,104 @@ namespace excel2json
 
         private object convertSheetToArray(DataTable sheet, bool lowcase, string excludePrefix, bool cellJson)
         {
-            List<object> values = new List<object>();
+            List<TableInfo> tableDatas = new List<TableInfo>();
 
-            int firstDataRow = mHeaderRows;
+            int firstDataRow = 0;
+            TableInfo tableInfo = null;
+
+            // first pass to collect table/config informations
             for (int i = firstDataRow; i < sheet.Rows.Count; i++)
             {
                 DataRow row = sheet.Rows[i];
 
-                values.Add(
-                    convertRowToDict(sheet, row, lowcase, firstDataRow, excludePrefix, cellJson)
-                    );
+                var firstColumn = row[0].ToString();
+                if (firstColumn == "[CONFIG_BEGIN]")
+                {
+                    if (tableInfo != null) throw new Exception(string.Format("Unclosed Config/Table {0}", tableInfo.tableName));
+
+                    tableInfo = new TableInfo();
+                    tableInfo.parseMode = ParseMode.RowMajor;
+                    tableInfo.startRow = i;
+                    tableInfo.tableName = row[1].ToString();
+                }
+                else if (firstColumn == "[CONFIG_END]")
+                {
+                    if (tableInfo == null || tableInfo.parseMode != ParseMode.RowMajor) throw new Exception("Can not place CONFIG_END tag here");
+                    tableInfo.endRow = i;
+                    tableDatas.Add(tableInfo);
+                    tableInfo = null;
+                }
+                else if (firstColumn == "[TABLE_BEGIN]")
+                {
+                    if (tableInfo != null) throw new Exception(string.Format("Unclosed Config/Table {0}", tableInfo.tableName));
+
+                    tableInfo = new TableInfo();
+                    tableInfo.parseMode = ParseMode.ColumnMajor;
+                    tableInfo.startRow = i;
+                    tableInfo.tableName = row[1].ToString();
+                }
+                else if (firstColumn == "[TABLE_END]")
+                {
+                    if (tableInfo == null || tableInfo.parseMode != ParseMode.ColumnMajor) throw new Exception("Can not place TABLE_END tag here");
+                    tableInfo.endRow = i;
+                    tableDatas.Add(tableInfo);
+                    tableInfo = null;
+                }
             }
 
-            return values;
+            // for each table/config parse it separately
+            foreach (var info in tableDatas)
+            {
+                if (info.parseMode == ParseMode.RowMajor)
+                {
+                    parseRowMajorTable(info, sheet, lowcase, excludePrefix, cellJson);
+                }
+                else if (info.parseMode == ParseMode.ColumnMajor)
+                {
+                    parseColumnMajorTable(info, sheet, lowcase, excludePrefix, cellJson);
+                }
+            }
+
+            return tableDatas;
+        }
+
+        private void parseRowMajorTable(TableInfo tableInfo, DataTable sheet, bool lowcase, string excludePrefix, bool cellJson)
+        {
+            for (int i = tableInfo.startRow + 1; i < tableInfo.endRow; ++i)
+            {
+                ColumnData column = new ColumnData();
+                column.desc = sheet.Rows[i][0].ToString();
+                column.type = sheet.Rows[i][1].ToString();
+                column.name = sheet.Rows[i][2].ToString();
+                column.datas.Add(sheet.Rows[i][3].ToString());
+                tableInfo.columnDatas.Add(column);
+            }
+        }
+
+        private void parseColumnMajorTable(TableInfo tableInfo, DataTable sheet, bool lowcase, string excludePrefix, bool cellJson)
+        {
+            int descIndex = tableInfo.startRow + 1;
+            int typeIndex = tableInfo.startRow + 2;
+            int nameIndex = tableInfo.startRow + 3;
+
+            for (int columnIndex = 0; columnIndex < sheet.Columns.Count; ++columnIndex)
+            {
+                var type = sheet.Rows[typeIndex][columnIndex].ToString();
+                var name = sheet.Rows[nameIndex][columnIndex].ToString();
+                if (name == "" || type == "") break;
+
+                ColumnData column = new ColumnData();
+                column.desc = sheet.Rows[descIndex][columnIndex].ToString();
+                column.name = name;
+                column.type = type;
+
+                for (int i = tableInfo.startRow + 4; i < tableInfo.endRow; ++i)
+                {
+                    column.datas.Add(sheet.Rows[i][columnIndex].ToString());
+                }
+
+                tableInfo.columnDatas.Add(column);
+            }
         }
 
         /// <summary>

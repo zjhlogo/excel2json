@@ -36,8 +36,12 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnImportExcel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnCopyJSON = new System.Windows.Forms.ToolStripButton();
+            this.btnCopyJson = new System.Windows.Forms.ToolStripButton();
             this.btnSaveJson = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCopyXml = new System.Windows.Forms.ToolStripButton();
+            this.btnSaveXml = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCopyCSharp = new System.Windows.Forms.ToolStripButton();
             this.btnSaveCSharp = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -59,7 +63,8 @@
             this.comboBoxEncoding = new System.Windows.Forms.ComboBox();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.tabControlCode = new System.Windows.Forms.TabControl();
-            this.tabPageJSON = new System.Windows.Forms.TabPage();
+            this.tabPageJson = new System.Windows.Forms.TabPage();
+            this.tabPageXml = new System.Windows.Forms.TabPage();
             this.tabCSharp = new System.Windows.Forms.TabPage();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             label2 = new System.Windows.Forms.Label();
@@ -174,8 +179,12 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnImportExcel,
             this.toolStripSeparator1,
-            this.btnCopyJSON,
+            this.btnCopyJson,
             this.btnSaveJson,
+            this.toolStripSeparator3,
+            this.btnCopyXml,
+            this.btnSaveXml,
+            this.toolStripSeparator4,
             this.btnCopyCSharp,
             this.btnSaveCSharp,
             this.toolStripSeparator2,
@@ -202,31 +211,61 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 48);
             // 
-            // btnCopyJSON
+            // btnCopyJson
             // 
-            this.btnCopyJSON.Image = global::excel2json.Properties.Resources.clipboard;
-            this.btnCopyJSON.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCopyJSON.Name = "btnCopyJSON";
-            this.btnCopyJSON.Size = new System.Drawing.Size(78, 45);
-            this.btnCopyJSON.Text = "Copy JSON";
-            this.btnCopyJSON.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCopyJSON.ToolTipText = "Copy JSON string to clipboard";
-            this.btnCopyJSON.Click += new System.EventHandler(this.btnCopyJSON_Click);
+            this.btnCopyJson.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyJson.Image")));
+            this.btnCopyJson.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCopyJson.Name = "btnCopyJson";
+            this.btnCopyJson.Size = new System.Drawing.Size(72, 45);
+            this.btnCopyJson.Text = "Copy Json";
+            this.btnCopyJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCopyJson.ToolTipText = "Copy JSON string to clipboard";
+            this.btnCopyJson.Click += new System.EventHandler(this.btnCopyJson_Click);
             // 
             // btnSaveJson
             // 
-            this.btnSaveJson.Image = global::excel2json.Properties.Resources.json;
+            this.btnSaveJson.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveJson.Image")));
             this.btnSaveJson.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSaveJson.Name = "btnSaveJson";
-            this.btnSaveJson.Size = new System.Drawing.Size(75, 45);
-            this.btnSaveJson.Text = "Save JSON";
+            this.btnSaveJson.Size = new System.Drawing.Size(69, 45);
+            this.btnSaveJson.Text = "Save Json";
             this.btnSaveJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSaveJson.ToolTipText = "Save JSON file";
             this.btnSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 48);
+            // 
+            // btnCopyXml
+            // 
+            this.btnCopyXml.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyXml.Image")));
+            this.btnCopyXml.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCopyXml.Name = "btnCopyXml";
+            this.btnCopyXml.Size = new System.Drawing.Size(68, 45);
+            this.btnCopyXml.Text = "Copy Xml";
+            this.btnCopyXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCopyXml.Click += new System.EventHandler(this.btnCopyXml_Click);
+            // 
+            // btnSaveXml
+            // 
+            this.btnSaveXml.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveXml.Image")));
+            this.btnSaveXml.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSaveXml.Name = "btnSaveXml";
+            this.btnSaveXml.Size = new System.Drawing.Size(65, 45);
+            this.btnSaveXml.Text = "Save Xml";
+            this.btnSaveXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSaveXml.Click += new System.EventHandler(this.btnSaveXml_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 48);
+            // 
             // btnCopyCSharp
             // 
-            this.btnCopyCSharp.Image = global::excel2json.Properties.Resources.clipboard;
+            this.btnCopyCSharp.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyCSharp.Image")));
             this.btnCopyCSharp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopyCSharp.Name = "btnCopyCSharp";
             this.btnCopyCSharp.Size = new System.Drawing.Size(62, 45);
@@ -237,7 +276,7 @@
             // 
             // btnSaveCSharp
             // 
-            this.btnSaveCSharp.Image = global::excel2json.Properties.Resources.code;
+            this.btnSaveCSharp.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveCSharp.Image")));
             this.btnSaveCSharp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSaveCSharp.Name = "btnSaveCSharp";
             this.btnSaveCSharp.Size = new System.Drawing.Size(59, 45);
@@ -478,7 +517,8 @@
             // 
             // tabControlCode
             // 
-            this.tabControlCode.Controls.Add(this.tabPageJSON);
+            this.tabControlCode.Controls.Add(this.tabPageJson);
+            this.tabControlCode.Controls.Add(this.tabPageXml);
             this.tabControlCode.Controls.Add(this.tabCSharp);
             this.tabControlCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlCode.Location = new System.Drawing.Point(0, 0);
@@ -487,22 +527,31 @@
             this.tabControlCode.Size = new System.Drawing.Size(490, 490);
             this.tabControlCode.TabIndex = 0;
             // 
-            // tabPageJSON
+            // tabPageJson
             // 
-            this.tabPageJSON.Location = new System.Drawing.Point(4, 22);
-            this.tabPageJSON.Name = "tabPageJSON";
-            this.tabPageJSON.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageJSON.Size = new System.Drawing.Size(482, 464);
-            this.tabPageJSON.TabIndex = 0;
-            this.tabPageJSON.Text = "JSON";
-            this.tabPageJSON.UseVisualStyleBackColor = true;
+            this.tabPageJson.Location = new System.Drawing.Point(4, 22);
+            this.tabPageJson.Name = "tabPageJson";
+            this.tabPageJson.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageJson.Size = new System.Drawing.Size(482, 464);
+            this.tabPageJson.TabIndex = 0;
+            this.tabPageJson.Text = "Json";
+            this.tabPageJson.UseVisualStyleBackColor = true;
+            // 
+            // tabPageXml
+            // 
+            this.tabPageXml.Location = new System.Drawing.Point(4, 22);
+            this.tabPageXml.Name = "tabPageXml";
+            this.tabPageXml.Size = new System.Drawing.Size(482, 464);
+            this.tabPageXml.TabIndex = 2;
+            this.tabPageXml.Text = "Xml";
+            this.tabPageXml.UseVisualStyleBackColor = true;
             // 
             // tabCSharp
             // 
             this.tabCSharp.Location = new System.Drawing.Point(4, 22);
             this.tabCSharp.Name = "tabCSharp";
             this.tabCSharp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCSharp.Size = new System.Drawing.Size(482, 466);
+            this.tabCSharp.Size = new System.Drawing.Size(482, 464);
             this.tabCSharp.TabIndex = 1;
             this.tabCSharp.Text = "C#";
             this.tabCSharp.UseVisualStyleBackColor = true;
@@ -553,7 +602,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnHelp;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ToolStripButton btnCopyJSON;
+        private System.Windows.Forms.ToolStripButton btnCopyJson;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panelExcelDropBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
@@ -569,7 +618,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button btnReimport;
         private System.Windows.Forms.TabControl tabControlCode;
-        private System.Windows.Forms.TabPage tabPageJSON;
+        private System.Windows.Forms.TabPage tabPageJson;
         private System.Windows.Forms.ComboBox comboBoxDateFormat;
         private System.Windows.Forms.ComboBox comboBoxSheetName;
         private System.Windows.Forms.TabPage tabCSharp;
@@ -577,5 +626,10 @@
         private System.Windows.Forms.ToolStripButton btnSaveCSharp;
         private System.Windows.Forms.TextBox textBoxExculdePrefix;
         private System.Windows.Forms.CheckBox checkBoxCellJson;
+        private System.Windows.Forms.TabPage tabPageXml;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnCopyXml;
+        private System.Windows.Forms.ToolStripButton btnSaveXml;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }

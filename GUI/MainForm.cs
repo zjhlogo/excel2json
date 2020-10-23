@@ -15,12 +15,20 @@ namespace excel2json.GUI
     /// </summary>
     public partial class MainForm : Form
     {
+        private enum FileType
+        {
+            Json,
+            Xml,
+            CSharp,
+        }
+
         // Excel导入数据管理
         private DataManager mDataMgr;
         private string mCurrentXlsx;
 
         // 支持语法高亮的文本框
         private Scintilla mJsonTextBox;
+        private Scintilla mXmlTextBox;
         private Scintilla mCSharpTextBox;
 
         // 导出数据相关的按钮，方便整体Enable/Disable
@@ -37,8 +45,11 @@ namespace excel2json.GUI
             InitializeComponent();
 
             //-- syntax highlight text box
-            mJsonTextBox = createTextBoxInTab(this.tabPageJSON);
+            mJsonTextBox = createTextBoxInTab(this.tabPageJson);
             ScintillaLexers.CreateLexer(mJsonTextBox, LexerEnumerations.LexerType.JavaScript);
+
+            mXmlTextBox = createTextBoxInTab(this.tabPageXml);
+            ScintillaLexers.CreateLexer(mXmlTextBox, LexerEnumerations.LexerType.Xml);
 
             mCSharpTextBox = createTextBoxInTab(this.tabCSharp);
             ScintillaLexers.CreateLexer(mCSharpTextBox, LexerEnumerations.LexerType.Cs);
@@ -61,8 +72,10 @@ namespace excel2json.GUI
 
             //-- button list
             mExportButtonList = new List<ToolStripButton>();
-            mExportButtonList.Add(this.btnCopyJSON);
+            mExportButtonList.Add(this.btnCopyJson);
             mExportButtonList.Add(this.btnSaveJson);
+            mExportButtonList.Add(this.btnCopyXml);
+            mExportButtonList.Add(this.btnSaveXml);
             mExportButtonList.Add(this.btnCopyCSharp);
             mExportButtonList.Add(this.btnSaveCSharp);
             enableExportButtons(false);
@@ -205,6 +218,7 @@ namespace excel2json.GUI
                 this.statusLabel.Text = "Load completed.";
 
                 mJsonTextBox.Text = mDataMgr.JsonContext;
+                mXmlTextBox.Text = mDataMgr.XmlContext;
                 mCSharpTextBox.Text = mDataMgr.CSharpCode;
 
                 enableExportButtons(true);
@@ -239,7 +253,7 @@ namespace excel2json.GUI
         /// <summary>
         /// 保存导出文件
         /// </summary>
-        private void saveToFile(int type, string filter)
+        private void saveToFile(FileType type, string filter)
         {
 
             try
@@ -254,10 +268,13 @@ namespace excel2json.GUI
                     {
                         switch (type)
                         {
-                            case 1:
+                            case FileType.Json:
                                 mDataMgr.saveJson(dlg.FileName);
                                 break;
-                            case 2:
+                            case FileType.Xml:
+                                mDataMgr.saveXml(dlg.FileName);
+                                break;
+                            case FileType.CSharp:
                                 mDataMgr.saveCSharp(dlg.FileName);
                                 break;
                         }
@@ -276,13 +293,13 @@ namespace excel2json.GUI
         /// </summary>
         private void btnSaveJson_Click(object sender, EventArgs e)
         {
-            saveToFile(1, "Json File(*.json)|*.json");
+            saveToFile(FileType.Json, "Json File(*.json)|*.json");
         }
 
         /// <summary>
         /// 工具栏按钮：Copy Json
         /// </summary>
-        private void btnCopyJSON_Click(object sender, EventArgs e)
+        private void btnCopyJson_Click(object sender, EventArgs e)
         {
             lock (mDataMgr)
             {
@@ -290,6 +307,27 @@ namespace excel2json.GUI
                 showStatus("Json text copyed to clipboard.", Color.Black);
             }
         }
+
+        /// <summary>
+        /// 工具栏按钮：Save Xml
+        /// </summary>
+        private void btnSaveXml_Click(object sender, EventArgs e)
+        {
+            saveToFile(FileType.Xml, "Xml File(*.xml)|*.xml");
+        }
+
+        /// <summary>
+        /// 工具栏按钮：Copy Xml
+        /// </summary>
+        private void btnCopyXml_Click(object sender, EventArgs e)
+        {
+            lock (mDataMgr)
+            {
+                Clipboard.SetText(mDataMgr.XmlContext);
+                showStatus("Xml text copyed to clipboard.", Color.Black);
+            }
+        }
+
 
         /// <summary>
         /// 设置状态栏信息
@@ -325,7 +363,7 @@ namespace excel2json.GUI
 
         private void btnSaveCSharp_Click(object sender, EventArgs e)
         {
-            saveToFile(2, "C# code file(*.cs)|*.cs");
+            saveToFile(FileType.CSharp, "C# code file(*.cs)|*.cs");
         }
     }
 }

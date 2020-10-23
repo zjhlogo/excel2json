@@ -12,7 +12,7 @@ namespace excel2json {
 
         // TODO: add Sheet Struct Define
 
-        public ExcelLoader(string filePath, int headerRow) {
+        public ExcelLoader(string filePath) {
             using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)) {
                 // Auto-detect format, supports:
                 //  - Binary Excel files (2.0-2003 format; *.xls)
@@ -20,7 +20,7 @@ namespace excel2json {
                 using (var reader = ExcelReaderFactory.CreateReader(stream)) {
                     // Use the AsDataSet extension method
                     // The result of each spreadsheet is in result.Tables
-                    var result = reader.AsDataSet(createDataSetReadConfig(headerRow));
+                    var result = reader.AsDataSet(createDataSetReadConfig());
                     this.mData = result;
                 }
             }
@@ -36,17 +36,11 @@ namespace excel2json {
             }
         }
 
-        private ExcelDataSetConfiguration createDataSetReadConfig(int headerRow) {
+        private ExcelDataSetConfiguration createDataSetReadConfig() {
             var tableConfig = new ExcelDataTableConfiguration() {
                 // Gets or sets a value indicating whether to use a row from the 
                 // data as column names.
-                UseHeaderRow = true,
-
-                // Gets or sets a callback to determine whether to include the 
-                // current row in the DataTable.
-                //FilterRow = (rowReader) => {
-                //    return rowReader.Depth > headerRow - 1;
-                //},
+                UseHeaderRow = false,
             };
 
             return new ExcelDataSetConfiguration() {

@@ -16,6 +16,7 @@ namespace excel2json.GUI
 
         // 导出数据
         private JsonExporter mJson;
+        private XmlExporter mXml;
         private CSDefineGenerator mCSharp;
 
         /// <summary>
@@ -25,6 +26,15 @@ namespace excel2json.GUI
             get {
                 if (mJson != null)
                     return mJson.context;
+                else
+                    return "";
+            }
+        }
+
+        public string XmlContext {
+            get {
+                if (mXml != null)
+                    return mXml.context;
                 else
                     return "";
             }
@@ -48,6 +58,14 @@ namespace excel2json.GUI
             if (mJson != null)
             {
                 mJson.SaveToFile(filePath, mEncoding);
+            }
+        }
+
+        public void saveXml(string filePath)
+        {
+            if (mXml != null)
+            {
+                mXml.SaveToFile(filePath, mEncoding);
             }
         }
 
@@ -90,13 +108,14 @@ namespace excel2json.GUI
             mEncoding = cd;
 
             //-- Load Excel
-            ExcelLoader excel = new ExcelLoader(excelPath, header);
+            ExcelLoader excel = new ExcelLoader(excelPath);
 
             //-- C# 结构体定义
             mCSharp = new CSDefineGenerator(excelPath, excel, options.ExcludePrefix);
 
             //-- 导出JSON
             mJson = new JsonExporter(excel, options.Lowcase, options.ExportArray, options.DateFormat, options.ForceSheetName, header, options.ExcludePrefix, options.CellJson);
+            mXml = new XmlExporter(excel, options.Lowcase, options.ExportArray, options.DateFormat, options.ForceSheetName, header, options.ExcludePrefix, options.CellJson);
         }
     }
 }

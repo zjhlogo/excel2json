@@ -91,6 +91,7 @@
     <Compile Include="CSDefineGenerator.cs" />
     <Compile Include="ExcelLoader.cs" />
     <Compile Include="GUI\DataManager.cs" />
+    <Compile Include="XmlExporter.cs" />
     <Compile Include="JsonExporter.cs" />
     <Compile Include="GUI\MainForm.cs">
       <SubType>Form</SubType>
@@ -127,10 +128,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\save.png" />
     <None Include="Resources\lua.png" />
     <None Include="Resources\SQL.png" />
     <None Include="Resources\clipboard.png" />
     <None Include="Resources\code.png" />
+    <Content Include="Resources\copy.png" />
     <Content Include="Resources\excel.png" />
     <Content Include="Resources\excel2json.ico" />
     <None Include="Resources\excel_64.png" />

@@ -2,6 +2,8 @@
 
 原版链接：[https://neil3d.github.io/coding/excel2json.html](https://neil3d.github.io/coding/excel2json.html)
 
+windows二进制版本发布在 `publish` 文件夹下
+
 ## 命令行参数
 
 * -i, --input Required. 输入的Excel文件路径.

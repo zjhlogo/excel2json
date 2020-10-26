@@ -1,0 +1,1119 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VPKSoft.ScintillaLexers</name>
+    </assembly>
+    <members>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerVb">
+            <summary>
+            A class for the Batch lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerVb.CreateVbLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the batch script file.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCss.CreateCssLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the Cascading Style Sheets (CSS).
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerIni">
+            <summary>
+            A class for the INI lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerIni.CreateIniLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the INI (properties file).
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon">
+            <summary>
+            A base class for creating static lexers.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon.ClearStyle(ScintillaNET.Scintilla)">
+            <summary>
+            Resets the Scintilla's style to default.
+            </summary>
+            <param name="scintilla">A Scintilla which style to reset.</param>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon.AddFolding(ScintillaNET.Scintilla)">
+            <summary>
+            Adds a "standard" folding to a lexer.
+            </summary>
+            <param name="scintilla">An instance to a Scintilla class.</param>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon.AddFolding(ScintillaNET.Scintilla,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Adds a "standard" folding to a lexer with given foreground and background colors.
+            </summary>
+            <param name="scintilla">An instance to a Scintilla class.</param>
+            <param name="foregroundColor">The foreground color to be used.</param>
+            <param name="backgroundColor">The background color to be used.</param>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon.SetHtmlStyles(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Sets the HTML styles for a lexer.
+            </summary>
+            <param name="scintilla">A <see cref="T:ScintillaNET.Scintilla"/> class instance.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon.SetPhpStyles(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Sets the PHP styles for a lexer.
+            </summary>
+            <param name="scintilla">A <see cref="T:ScintillaNET.Scintilla"/> class instance.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon.SetScriptedHtml(VPKSoft.ScintillaLexers.LexerEnumerations.LexerType,ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            A helper method to be used with HTML including scripts.
+            </summary>
+            <param name="lexerType">Type of the lexer to embed into the HTML lexer.</param>
+            <param name="scintilla">An instance to a scintilla to which to append the script lexer.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerBatch">
+            <summary>
+            A class for the Batch lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerBatch.CreateBatchLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the batch script file.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCpp">
+            <summary>
+            A class for the C++ lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCpp.CreateCppLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the C++ programming language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCs">
+            <summary>
+            A class for the C# lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCs.CreateCsLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the C# programming language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerHtml">
+            <summary>
+            A class for the HTML lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerHtml.CreateHtmlLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the HTML (Hypertext Markup Language).
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerJava">
+            <summary>
+            A class for the Java lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerJava.CreateJavaLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the Java programming language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerJavaScript.CreateJavaScriptLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the Java programming language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerNsis">
+            <summary>
+            A class for the NSIS lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerNsis.CreateNsisLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the NSIS (Nullsoft Scriptable Install System).
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerNull">
+            <summary>
+            A class for plain text.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerNull.CreateNullLexer(ScintillaNET.Scintilla)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for a plain text file.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup">
+            <summary>
+            Constants for the InnoSetup script language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Default">
+            
+             Summary:
+                 Default style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Identifier">
+            
+             Summary:
+                 Identifier style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Comment">
+            
+             Summary:
+                 Comment style '{' index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Comment2">
+            
+             Summary:
+                 Comment style 2 "(*" index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.CommentLine">
+            
+             Summary:
+                 Comment line style "//" index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Preprocessor">
+            
+             Summary:
+                 Preprocessor style "{$" index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Preprocessor2">
+            
+             Summary:
+                 Preprocessor style 2 "(*$" index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Number">
+            
+             Summary:
+                 Number style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.HexNumber">
+            
+             Summary:
+                 Hexadecimal number style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Word">
+            
+             Summary:
+                 Word (keyword set 0) style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.String">
+            
+             Summary:
+                 Double-quoted string style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.StringEol">
+            
+             Summary:
+                 Unclosed string EOL style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Character">
+            
+             Summary:
+                 Single-quoted string style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Operator">
+            
+             Summary:
+                 Operator style index.
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.CreateSpecificLexer.InnoSetup.Asm">
+            
+             Summary:
+                 Assembly style index.
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerInnoSetup">
+            <summary>
+            A class for the InnoSetup lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerInnoSetup.CreateInnoSetupLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the InnoSetup programming language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerInnoSetup.IntToColor(System.Int32)">
+            <summary>
+            Creates a color value of a given integer containing an RGB color value.
+            </summary>
+            <param name="rgb">The RGB color value.</param>
+            <returns>System.Drawing.Color.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerPascal">
+            <summary>
+            A class for the Pascal lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerPascal.CreatePascalLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the Pascal programming language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerPhp">
+            <summary>
+            A class for the PHP lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerPhp.CreatePhpLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the PHP programming language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerPowerShell">
+            <summary>
+            A class for the Windows PowerShell lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerPowerShell.CreatePowerShellLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the Windows PowerShell script language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerPython">
+            <summary>
+            A class for the Python lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerPython.CreatePythonLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the Python programming language.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerSql">
+            <summary>
+            A class for the SQL lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerSql.CreateSqlLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the Structured Query Language (SQL).
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerXml">
+            <summary>
+            A class for the XML lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerXml.CreateXmlLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the XML (The eXtensible Markup Language).
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerYaml">
+            <summary>
+            A class for the YAML lexer.
+            Implements the <see cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+            </summary>
+            <seealso cref="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerCommon" />
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.CreateLexerYaml.CreateYamlLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerColors.LexerColors)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance for the YAML (YAML Ain't Markup Language).
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerColors">A <see cref="N:VPKSoft.ScintillaLexers.LexerColors"/> class instance for the lexer coloring.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties">
+            <summary>
+            A class containing code folding properties for different lexers.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.FoldPropertyName">
+            <summary>
+            Gets or sets the name of the fold property.
+            </summary>
+            <value>The name of the fold property.</value>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.FoldPropertyValue">
+            <summary>
+            Gets or sets the fold property value.
+            </summary>
+            <value>The fold property value.</value>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.DefaultFolding">
+            <summary>
+            Gets or sets the default folding properties for all lexers.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.XmlFolding">
+            <summary>
+            Gets or sets the additional folding properties for the XML (eXtensible Markup Language) lexer.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.SqlFolding">
+            <summary>
+            Gets or sets the additional folding properties for the SQL (Structured Query Language) lexer.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.HyperTextFolding">
+            <summary>
+            Gets or sets the additional folding properties for the HTML (Hypertext Markup Language) lexer.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.SetScintillaProperties(ScintillaNET.Scintilla,System.Collections.Generic.List{VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties})">
+            <summary>
+            Sets the <see cref="T:ScintillaNET.Scintilla"/> properties.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> instance of which properties to set.</param>
+            <param name="foldProperties">A list of fold properties.</param>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.FoldDefault(ScintillaNET.Scintilla)">
+            <summary>
+            Sets the default folding for all lexers.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> instance of which default folding properties to set.</param>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.CreateSpecificLexer.LexerFoldProperties.SetFoldProperties(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Sets the fold properties to a given lexer type.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> of which fold properties to set.</param>
+            <param name="lexerType">Type of the lexer.</param>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.GlobalScintillaFont">
+            <summary>
+            A class to set the basic font style for the <see cref="T:ScintillaNET.Scintilla"/>.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.GlobalScintillaFont.FontSize">
+            <summary>
+            Gets or sets the size of the font for the <see cref="T:ScintillaNET.Scintilla"/> controls.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.GlobalScintillaFont.FontFamilyName">
+            <summary>
+            Gets or sets the name of the font family for the <see cref="T:ScintillaNET.Scintilla"/> controls.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.LexerColors.LexerColors">
+            <summary>
+            A class containing the colors for the lexers.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.LexerColors.LexerColors.Item(VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Gets or sets the colors for a given LexerType enumeration.
+            </summary>
+            <param name="lexerType">The type of the lexer.</param>
+            <returns>A list of color belonging to a specific lexer.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">value</exception>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.LexerColors.LexerColors.Item(VPKSoft.ScintillaLexers.LexerEnumerations.LexerType,System.String,System.Boolean)">
+            <summary>
+            Gets or sets the color uses by the SciTE color name and a value indicating whether a foreground or a background color is requested.
+            <note type="note">URL: https://www.scintilla.org/SciTE.html</note>
+            </summary>
+            <param name="lexerType">The type of the lexer.</param>
+            <param name="colorName">The name of the color in the SciTE.</param>
+            <param name="isForeground">A flag indicating whether a foreground or a background color is requested.</param>
+            <returns>A color with the specified lexer, a specified SciTE name and a flag indicating whether the color in question is a background or a foreground color.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">value</exception>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.LexerColors.LexerColors.Item(VPKSoft.ScintillaLexers.LexerEnumerations.LexerType,System.String)">
+            <summary>
+            Gets or sets the <see cref="T:System.Drawing.Color"/> with the specified lexer type and the color's name.
+            </summary>
+            <param name="lexerType">The type of the lexer.</param>
+            <param name="colorName">The name of the color.</param>
+            <returns>A color with the specified lexer type and with a specified name.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">value</exception>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.LexerColors.LexerColors.DescribeLexerColors(System.String,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Saves a lexer color definition to a XML file.
+            </summary>
+            <param name="fileName">Name of the file where to save the lexer's color definitions.</param>
+            <param name="lexerType">Type of the lexer.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.LexerColors.LexerColors.DescribeLexerColors(VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Saves a lexer color definition to a XDocument class instance.
+            </summary>
+            <param name="lexerType">Type of the lexer.</param>
+            <returns>An instance to a XDocument class containing the color definitions.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.LexerColors.LexerColors.LoadDescribedLexerColorsFromXml(System.Xml.Linq.XDocument,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Loads the lexer color definition from a XDocument class instance.
+            </summary>
+            <param name="document">The document containing the lexer's color definitions.</param>
+            <param name="lexerType">Type of the lexer.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.LexerColors.LexerColors.LoadDescribedLexerColorsFromXml(System.String,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Loads the lexer color definition from a XML file.
+            </summary>
+            <param name="fileName">Name of the file from where to load the lexer color definitions.</param>
+            <param name="lexerType">Type of the lexer.</param>
+            <returns>True if the operation was successful; otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.LexerColors.LexerColors.GetColorIndexBySciTEName(System.String,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType,System.Boolean)">
+            <summary>
+            Gets the color uses by the SciTE color name and a value indicating whether a foreground or a background color is requested.
+            <note type="note">URL: https://www.scintilla.org/SciTE.html</note>
+            </summary>
+            <param name="name">The name of the color (SciTE).</param>
+            <param name="lexerType">Type of the lexer.</param>
+            <param name="isForeground">A flag indicating whether a foreground or a background color is requested.</param>
+            <returns>An index >= 0 if successful; otherwise -1.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.LexerColors.LexerColors.GetColorIndexByName(System.String,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Gets the index of the color by name.
+            </summary>
+            <param name="name">The name of the color.</param>
+            <param name="lexerType">Type of the lexer.</param>
+            <returns>An index >= 0 if successful; otherwise -1.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.LexerColors.LexerColors.GetColorNames(VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Gets the color names for a given lexer type.
+            </summary>
+            <param name="lexerType">Type of the lexer.</param>
+            <returns>A collection of color names of the given lexer type if successful; otherwise an empty collection is returned.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.LexerEnumerations">
+            <summary>
+            A class containing the <see cref="T:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType"/> enumeration values.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType">
+            <summary>
+            An enumeration of currently supported Scintilla lexers.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Unknown">
+            <summary>
+            An unknown language and / or file.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Cs">
+            <summary>
+            The C# programming language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Cpp">
+            <summary>
+            The C++ programming language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Xml">
+            <summary>
+            The eXtensible Markup Language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Text">
+            <summary>
+            A plain text document.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Nsis">
+            <summary>
+            The NSIS (Nullsoft Scriptable Install System).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.SQL">
+            <summary>
+            The Structured Query Language (SQL).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Batch">
+            <summary>
+            A batch script file.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Pascal">
+            <summary>
+            A lexer for the Pascal programming language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.PHP">
+            <summary>
+            A lexer for the PHP programming language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.HTML">
+            <summary>
+            A lexer type for the HTML (Hypertext Markup Language).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.WindowsPowerShell">
+            <summary>
+            A lexer type for the Windows PowerShell scripting language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.INI">
+            <summary>
+            An INI file lexer.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Python">
+            <summary>
+            A lexer for the Python programming language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.YAML">
+            <summary>
+            A lexer for the YAML Ain't Markup Language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Java">
+            <summary>
+            A lexer for the Java programming language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.JavaScript">
+            <summary>
+            A lexer for the JavaScript scripting language.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.Css">
+            <summary>
+            A lexer for the Cascading Style Sheets (CSS).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.InnoSetup">
+            <summary>
+            A lexer for the Inno Setup.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType.VbDotNet">
+            <summary>
+            The Visual Basic .NET programming language.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.HelperClasses.LexerFileExtensions">
+            <summary>
+            A class containing lexer known file extensions for different lexers.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.HelperClasses.LexerFileExtensions.LexerType">
+            <summary>
+            Gets or sets the type of the lexer.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.HelperClasses.LexerFileExtensions.FileExtensionList">
+            <summary>
+            Gets or sets the file extension list for a lexer.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.HelperClasses.LexerFileExtensions.XmlFileDetectionStrings">
+            <summary>
+            A list of strings used to detect if a file by it's starting contents is a XML file.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.HelperClasses.LexerFileExtensions.IsXmlFile(System.String)">
+            <summary>
+            Gets a value indicating if the given file is an XML file.
+            There are so many different extensions for XML files so it's better to peek inside the file if necessary.
+            </summary>
+            <param name="fileName">Name of the file to check for being a XML file.</param>
+            <returns></returns>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.HelperClasses.LexerFileExtensions.DetectXmlFileFromFileContents">
+            <summary>
+            Gets or sets the value whether to peek inside to a file to check if the file is a XML file.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.HelperClasses.LexerFileExtensions.FileExtensions">
+            <summary>
+            Gets or sets the file extensions for specified lexers.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.HelperClasses.LexerFileExtensions.LexerTypeFromFileName(System.String)">
+            <summary>
+            Gets a lexer type from a given file name.
+            </summary>
+            <param name="fileName">Name of the file from which to get the lexer type from.</param>
+            <returns>A LexerType enumeration value.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.HelperClasses.LexerTypeName">
+            <summary>
+            A helper class for Class LexerTypeName.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.HelperClasses.LexerTypeName.SCLEX_NSIS">
+            <summary>
+            The NSIS (Nullsoft Scriptable Install System) lexer value.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.HelperClasses.LexerTypeName.SCLEX_INNOSETUP">
+            <summary>
+            The Inno Setup lexer value.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.HelperClasses.LexerTypeName.SCLEX_YAML">
+            <summary>
+            The YAML (YAML Ain't Markup Language) lexer value.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.ScintillaLexers.HelperClasses.LexerTypeName.LexerTypeNameList">
+            <summary>
+            A list of currently supported lexers by this library.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.HelperClasses.LexerTypeName.GetLexerXmlName(VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Gets the name of the lexer XML used in Notepad++'s XML style files.
+            </summary>
+            <param name="lexerType">Type of the lexer.</param>
+            <returns>The name of the lexer used in Notepad++'s XML style files if successful; otherwise "text".</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.HelperClasses.LexerTypeName.GetLexerXmlName(ScintillaNET.Lexer)">
+            <summary>
+            Gets the name of the lexer XML used in Notepad++'s XML style files.
+            </summary>
+            <param name="lexer">The Scintilla lexer enumeration value.</param>
+            <returns>The name of the lexer used in Notepad++'s XML style files if successful; otherwise "text".</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.HelperClasses.LexerTypeName.GetLexerByLexerType(VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Gets the type of the lexer by a given <see cref="T:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType"/> enumeration.
+            </summary>
+            <param name="lexerType">Type of the lexer.</param>
+            <returns>A <see cref="T:ScintillaNET.Lexer"/> matching the given <see cref="T:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType"/> enumeration.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.HelperClasses.ScintillaKeyWords">
+            <summary>
+            A class for <see cref="T:ScintillaNET.Scintilla"/> keywords for different lexers.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.HelperClasses.ScintillaKeyWords.KeyWordSetIndex">
+            <summary>
+            Gets or sets the index of the key word set.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.HelperClasses.ScintillaKeyWords.KeyWords">
+            <summary>
+            Gets or sets the key words belonging to a keyword set.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.HelperClasses.ScintillaKeyWords.LexerType">
+            <summary>
+            Gets or sets the type of the lexer of the keyword set.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.HelperClasses.ScintillaKeyWords.SetKeywords(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Sets the keywords for a given <see cref="T:ScintillaNET.Scintilla"/> instance with a given <see cref="P:VPKSoft.ScintillaLexers.HelperClasses.ScintillaKeyWords.LexerType"/>.
+            </summary>
+            <param name="scintilla">The scintilla instance which keywords to set.</param>
+            <param name="lexerType">Type of the lexer.</param>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.HelperClasses.ScintillaKeyWords.KeyWordList">
+            <summary>
+            Gets or sets the key word list containing specific keywords for different lexer types.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors">
+            <summary>
+            A helper class to get the mark colors from the Notepad++ software XML lexer definition file.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.SmartHighLightingForeground">
+            <summary>
+            Gets or sets the smart high highlighting foreground color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.SmartHighLightingBackground">
+            <summary>
+            Gets or sets the smart high highlighting background color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.IncrementalHighlightAllForeground">
+            <summary>
+            Gets or sets the incremental highlight all foreground color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.IncrementalHighlightAllBackground">
+            <summary>
+            Gets or sets the incremental highlight all background color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkOneForeground">
+            <summary>
+            Gets or sets the mark one foreground color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkOneBackground">
+            <summary>
+            Gets or sets the mark one background color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkTwoForeground">
+            <summary>
+            Gets or sets the mark two foreground color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkTwoBackground">
+            <summary>
+            Gets or sets the mark two background color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkThreeForeground">
+            <summary>
+            Gets or sets the mark three foreground color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkThreeBackground">
+            <summary>
+            Gets or sets the mark three background color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkFourForeground">
+            <summary>
+            Gets or sets the mark four foreground color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkFourBackground">
+            <summary>
+            Gets or sets the mark four background color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkFiveForeground">
+            <summary>
+            Gets or sets the mark five foreground color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.MarkFiveBackground">
+            <summary>
+            Gets or sets the mark five background color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.CurrentLineBackground">
+            <summary>
+            Gets or sets the current line background color.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.CurrentLineForeground">
+            <summary>
+            Gets or sets the current line background color.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.FromFile(System.String)">
+            <summary>
+            Gets the color definitions from a XML style definition file.
+            </summary>
+            <param name="fileName">The name of the file.</param>
+            <returns>An instance to this (<see cref="T:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors"/>) class.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors.FromXDocument(System.Xml.Linq.XDocument)">
+            <summary>
+            Gets the color definitions from a XDocument style definition instance.
+            </summary>
+            <param name="document">The XDocument to document to get the styles from.</param>
+            <returns>An instance to this (<see cref="T:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.MarkColors"/>) class.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.ScintillaNotepadPlusPlusStyles">
+            <summary>
+            A class for loading global styles for the <see cref="T:ScintillaNET.Scintilla"/> from 
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.ScintillaNotepadPlusPlusStyles.SetGlobalDefaultStyles(System.Xml.Linq.XDocument,ScintillaNET.Scintilla,System.Boolean,System.Boolean)">
+            <summary>
+            Sets the global and default styles for the given <see cref="T:ScintillaNET.Scintilla"/> instance depending on the other parameters.
+            </summary>
+            <param name="document">A XML document containing the lexer style data.</param>
+            <param name="scintilla">The scintilla instance of which style to set.</param>
+            <param name="useGlobalOverride">if set to <c>true</c> the "Global override" style is read from the <paramref name="document"/>.</param>
+            <param name="font">If set to <c>true</c> the font name and size is read from the <paramref name="document"/>..</param>
+            <returns><c>true</c> if the operation was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.ScintillaNotepadPlusPlusStyles.SetFolding(System.Xml.Linq.XDocument,ScintillaNET.Scintilla)">
+            <summary>
+            Sets the folding of a <see cref="T:ScintillaNET.Scintilla"/> based on the "Fold" style defined in the XML document.
+            </summary>
+            <param name="document">The XML document to read the folding style from.</param>
+            <param name="scintilla">The instance to a scintilla of which folding style to set.</param>
+            <returns><c>true</c> if the operation was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.ScintillaNotepadPlusPlusStyles.SetStyle(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper,System.Boolean)">
+            <summary>
+            Sets the style of a given <see cref="T:ScintillaNET.Scintilla"/> with a given style.
+            </summary>
+            <param name="scintilla">The scintilla instance of which style to set.</param>
+            <param name="style">The style to set for the <paramref name="scintilla"/>.</param>
+            <param name="font">If set to <c>true</c> the font is also set from the given style.</param>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.ScintillaNotepadPlusPlusStyles.LoadScintillaStyleFromNotepadPlusXml(System.Xml.Linq.XDocument,ScintillaNET.Scintilla,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Loads the Scintilla global styles from a Notepad++ style definition XML file.
+            </summary>
+            <param name="document">The XML document to read the global style from.</param>
+            <param name="scintilla">The Scintilla of which global styles to set.</param>
+            <param name="useWhiteSpace">A flag indicating whether to color the white space symbol.</param>
+            <param name="useSelectionColors">A flag indicating whether to color the selection.</param>
+            <param name="useMarginColors">A flag indicating whether to color the margin.</param>
+            <returns><c>true</c> if the operations was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.ScintillaNotepadPlusPlusStyles.LoadLexerStyleFromNotepadPlusXml(System.Xml.Linq.XDocument,ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Gets the styles for a <see cref="T:ScintillaNET.Scintilla"/> from the Notepad++'s XML style files for a given lexer.
+            </summary>
+            <param name="document">The XML document to read the lexer style from.</param>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> which lexer style to set.</param>
+            <param name="lexerType">A <see cref="T:VPKSoft.ScintillaLexers.LexerEnumerations.LexerType"/> enumeration.</param>
+            <returns><c>true</c> if the operations was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper">
+            <summary>
+            A helper class for Notepad++ XML style definition files.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.Name">
+            <summary>
+            Gets or sets the name of the style definition.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.Bold">
+            <summary>
+            Gets or sets a value indicating whether the style definition defines a fond as bold.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.Italic">
+            <summary>
+            Gets or sets a value indicating whether the style definition defines a fond as italic.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.StyleId">
+            <summary>
+            Gets or sets the style identifier from a style definition.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.ColorForeground">
+            <summary>
+            Gets or sets the foreground color of a font from a style definition.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.ColorBackground">
+            <summary>
+            Gets or sets the background color of a font from a style definition.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.FontName">
+            <summary>
+            Gets or sets the name of the font from a style definition.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.FontSize">
+            <summary>
+            Gets or sets the size of the font from a style definition.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.GetAttributeValue(System.Xml.Linq.XElement,System.String,System.String)">
+            <summary>
+            Gets the attribute value of a given <see cref="T:System.Xml.Linq.XElement"/>.
+            </summary>
+            <param name="element">The element to get the attribute from.</param>
+            <param name="attributeName">Name of the attribute.</param>
+            <param name="defaultValue">The default value for the attribute in case the attribute is null or the value is empty.</param>
+            <returns>The <see cref="T:System.Xml.Linq.XAttribute"/> value based on given parameters if successful; otherwise <paramref name="defaultValue"/>.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.GetAttributeAsColor(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Gets the attribute value of a given <see cref="T:System.Xml.Linq.XElement"/> as a <see cref="T:System.Drawing.Color"/>.
+            </summary>
+            <param name="element">The element to get the color attribute from.</param>
+            <param name="attributeName">Name of the attribute.</param>
+            <returns>A color if the operation was successful; otherwise Color.Empty.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper.FromXElement(System.Xml.Linq.XElement)">
+            <summary>
+            Creates a new instance of this class based on the given <see cref="T:System.Xml.Linq.XElement"/>
+            </summary>
+            <param name="element">The element to get the style definition from.</param>
+            <returns>A <see cref="T:VPKSoft.ScintillaLexers.ScintillaNotepadPlusPlus.XmlStyleNotepadPlusPlusHelper"/> class instance filled with the style definition data.</returns>
+        </member>
+        <member name="T:VPKSoft.ScintillaLexers.ScintillaLexers">
+            <summary>
+            A class for setting a lexer for a Scintilla class instance.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.ScintillaLexers.ScintillaLexers.LexerColors">
+            <summary>
+            Gets or sets the value of a LexerColors class instance.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaLexers.CreateLexerFromFile(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType,System.String)">
+            <summary>
+            Creates the lexer from XML file used by the Notepad++ software.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> which lexer style to set.</param>
+            <param name="lexerType">Type of the lexer.</param>
+            <param name="fileName">A file name to get the lexer type from.</param>
+            <returns><c>true</c> if the operation was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaLexers.CreateLexerFromFile(ScintillaNET.Scintilla,System.String,System.String)">
+            <summary>
+            Creates the lexer from XML file used by the Notepad++ software.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> which lexer style to set.</param>
+            <param name="fileName">A file name to get the lexer type from.</param>
+            <param name="definitionFile">A XML file to load the lexer style from.</param>
+            <returns><c>true</c> if the operation was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaLexers.CreateLexerFromFile(ScintillaNET.Scintilla,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Creates the lexer from XML file used by the Notepad++ software.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> which lexer style to set.</param>
+            <param name="fileName">A file name to get the lexer type from.</param>
+            <param name="definitionFile">A XML file to load the lexer style from.</param>
+            <param name="useGlobalOverride">A flag indicating whether the style "Global override" should be set for the lexer from the XML document.</param>
+            <param name="font">A flag indicating whether to use the defined font name from the XML document or not.</param>
+            <returns><c>true</c> if the operation was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaLexers.CreateLexerFromFile(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Creates the lexer from XML file used by the Notepad++ software.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> which lexer style to set.</param>
+            <param name="lexerType">Type of the lexer.</param>
+            <param name="fileName">A file name to get the lexer type from.</param>
+            <param name="useGlobalOverride">A flag indicating whether the style "Global override" should be set for the lexer from the XML document.</param>
+            <param name="font">A flag indicating whether to use the defined font name from the XML document or not.</param>
+            <returns><c>true</c> if the operation was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaLexers.CreateLexerFromFile(ScintillaNET.Scintilla,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Creates the lexer from XML file used by the Notepad++ software.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> which lexer style to set.</param>
+            <param name="fileName">A file name to get the lexer type from.</param>
+            <param name="definitionFile">A XML file to load the lexer style from.</param>
+            <param name="useGlobalOverride">A flag indicating whether the style "Global override" should be set for the lexer from the XML document.</param>
+            <param name="font">A flag indicating whether to use the defined font name from the XML document or not.</param>
+            <param name="useWhiteSpace">A flag indicating whether to color the white space symbol.</param>
+            <param name="useSelectionColors">A flag indicating whether to color the selection.</param>
+            <param name="useMarginColors">A flag indicating whether to color the margin.</param>
+            <returns><c>true</c> if the operation was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaLexers.CreateLexerFromFile(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Creates the lexer from XML file used by the Notepad++ software.
+            </summary>
+            <param name="scintilla">The <see cref="T:ScintillaNET.Scintilla"/> which lexer style to set.</param>
+            <param name="lexerType">Type of the lexer.</param>
+            <param name="fileName">A file name to get the lexer type from.</param>
+            <param name="useGlobalOverride">A flag indicating whether the style "Global override" should be set for the lexer from the XML document.</param>
+            <param name="font">A flag indicating whether to use the defined font name from the XML document or not.</param>
+            <param name="useWhiteSpace">A flag indicating whether to color the white space symbol.</param>
+            <param name="useSelectionColors">A flag indicating whether to color the selection.</param>
+            <param name="useMarginColors">A flag indicating whether to color the margin.</param>
+            <returns><c>true</c> if the operation was successful, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaLexers.CreateLexer(ScintillaNET.Scintilla,System.String)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance with a given language type enumeration.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="fileName">A file name to get the lexer type from.</param>
+            <returns>True if the given lexer was found; otherwise false (a work in progress).</returns>
+        </member>
+        <member name="M:VPKSoft.ScintillaLexers.ScintillaLexers.CreateLexer(ScintillaNET.Scintilla,VPKSoft.ScintillaLexers.LexerEnumerations.LexerType)">
+            <summary>
+            Creates the lexer for a given Scintilla class instance with a given language type enumeration.
+            </summary>
+            <param name="scintilla">A Scintilla class instance to set the lexer style for.</param>
+            <param name="lexerType">Type of the lexer / programming language.</param>
+            <returns>True if the given lexer was found; otherwise false (a work in progress).</returns>
+        </member>
+    </members>
+</doc>

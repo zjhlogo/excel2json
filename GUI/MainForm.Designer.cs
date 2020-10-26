@@ -23,57 +23,34 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.Label label2;
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label4;
-            System.Windows.Forms.Label label3;
-            System.Windows.Forms.Label label5;
-            System.Windows.Forms.Label label6;
-            System.Windows.Forms.Label label7;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.btnImportExcel = new System.Windows.Forms.ToolStripButton();
+            this.toolReimport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnCopyJson = new System.Windows.Forms.ToolStripButton();
-            this.btnSaveJson = new System.Windows.Forms.ToolStripButton();
+            this.toolCopyJson = new System.Windows.Forms.ToolStripButton();
+            this.toolSaveJson = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnCopyXml = new System.Windows.Forms.ToolStripButton();
-            this.btnSaveXml = new System.Windows.Forms.ToolStripButton();
+            this.toolCopyXml = new System.Windows.Forms.ToolStripButton();
+            this.toolSaveXml = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnCopyCSharp = new System.Windows.Forms.ToolStripButton();
-            this.btnSaveCSharp = new System.Windows.Forms.ToolStripButton();
+            this.toolCopyCSharp = new System.Windows.Forms.ToolStripButton();
+            this.toolSaveCSharp = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnHelp = new System.Windows.Forms.ToolStripButton();
+            this.toolHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelExcelDropBox = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBoxExcel = new System.Windows.Forms.PictureBox();
             this.labelExcelFile = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBoxCellJson = new System.Windows.Forms.CheckBox();
-            this.textBoxExculdePrefix = new System.Windows.Forms.TextBox();
-            this.comboBoxSheetName = new System.Windows.Forms.ComboBox();
-            this.comboBoxDateFormat = new System.Windows.Forms.ComboBox();
-            this.btnReimport = new System.Windows.Forms.Button();
-            this.comboBoxLowcase = new System.Windows.Forms.ComboBox();
-            this.comboBoxHeader = new System.Windows.Forms.ComboBox();
-            this.comboBoxEncoding = new System.Windows.Forms.ComboBox();
-            this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.tabControlCode = new System.Windows.Forms.TabControl();
             this.tabPageJson = new System.Windows.Forms.TabPage();
             this.tabPageXml = new System.Windows.Forms.TabPage();
             this.tabCSharp = new System.Windows.Forms.TabPage();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            label2 = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            label4 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
-            label5 = new System.Windows.Forms.Label();
-            label6 = new System.Windows.Forms.Label();
-            label7 = new System.Windows.Forms.Label();
+            this.toolImportExcel = new System.Windows.Forms.ToolStripButton();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -84,73 +61,8 @@
             this.panelExcelDropBox.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExcel)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.tabControlCode.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            label2.Location = new System.Drawing.Point(6, 49);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(102, 12);
-            label2.TabIndex = 1;
-            label2.Text = "Encoding:";
-            label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(31, 23);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(77, 12);
-            label1.TabIndex = 1;
-            label1.Text = "Export Type:";
-            label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label4
-            // 
-            label4.Location = new System.Drawing.Point(6, 75);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(102, 12);
-            label4.TabIndex = 6;
-            label4.Text = "Lowcase:";
-            label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            label3.Location = new System.Drawing.Point(6, 101);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(102, 12);
-            label3.TabIndex = 4;
-            label3.Text = "Header:";
-            label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label5
-            // 
-            label5.Location = new System.Drawing.Point(6, 127);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(102, 12);
-            label5.TabIndex = 9;
-            label5.Text = "Date Format:";
-            label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label6
-            // 
-            label6.Location = new System.Drawing.Point(6, 153);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(102, 12);
-            label6.TabIndex = 11;
-            label6.Text = "SheetName:";
-            label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            label7.Location = new System.Drawing.Point(6, 179);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(102, 12);
-            label7.TabIndex = 13;
-            label7.Text = "ExculdePrefix:";
-            label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // statusStrip
             // 
@@ -177,129 +89,130 @@
             this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnImportExcel,
+            this.toolImportExcel,
+            this.toolReimport,
             this.toolStripSeparator1,
-            this.btnCopyJson,
-            this.btnSaveJson,
+            this.toolCopyJson,
+            this.toolSaveJson,
             this.toolStripSeparator3,
-            this.btnCopyXml,
-            this.btnSaveXml,
+            this.toolCopyXml,
+            this.toolSaveXml,
             this.toolStripSeparator4,
-            this.btnCopyCSharp,
-            this.btnSaveCSharp,
+            this.toolCopyCSharp,
+            this.toolSaveCSharp,
             this.toolStripSeparator2,
-            this.btnHelp});
+            this.toolHelp});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(784, 48);
             this.toolStrip.TabIndex = 4;
             this.toolStrip.Text = "Import excel file and export as JSON";
             // 
-            // btnImportExcel
+            // toolReimport
             // 
-            this.btnImportExcel.Image = global::excel2json.Properties.Resources.excel;
-            this.btnImportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnImportExcel.Name = "btnImportExcel";
-            this.btnImportExcel.Size = new System.Drawing.Size(85, 45);
-            this.btnImportExcel.Text = "Import Excel";
-            this.btnImportExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnImportExcel.ToolTipText = "Import Excel .xlsx file";
-            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
+            this.toolReimport.Image = global::excel2json.Properties.Resources.excel;
+            this.toolReimport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolReimport.Name = "toolReimport";
+            this.toolReimport.Size = new System.Drawing.Size(66, 45);
+            this.toolReimport.Text = "Reimport";
+            this.toolReimport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolReimport.ToolTipText = "Import Excel .xlsx file";
+            this.toolReimport.Click += new System.EventHandler(this.btnReimport_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 48);
             // 
-            // btnCopyJson
+            // toolCopyJson
             // 
-            this.btnCopyJson.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyJson.Image")));
-            this.btnCopyJson.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCopyJson.Name = "btnCopyJson";
-            this.btnCopyJson.Size = new System.Drawing.Size(72, 45);
-            this.btnCopyJson.Text = "Copy Json";
-            this.btnCopyJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCopyJson.ToolTipText = "Copy JSON string to clipboard";
-            this.btnCopyJson.Click += new System.EventHandler(this.btnCopyJson_Click);
+            this.toolCopyJson.Image = ((System.Drawing.Image)(resources.GetObject("toolCopyJson.Image")));
+            this.toolCopyJson.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCopyJson.Name = "toolCopyJson";
+            this.toolCopyJson.Size = new System.Drawing.Size(72, 45);
+            this.toolCopyJson.Text = "Copy Json";
+            this.toolCopyJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolCopyJson.ToolTipText = "Copy JSON string to clipboard";
+            this.toolCopyJson.Click += new System.EventHandler(this.btnCopyJson_Click);
             // 
-            // btnSaveJson
+            // toolSaveJson
             // 
-            this.btnSaveJson.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveJson.Image")));
-            this.btnSaveJson.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSaveJson.Name = "btnSaveJson";
-            this.btnSaveJson.Size = new System.Drawing.Size(69, 45);
-            this.btnSaveJson.Text = "Save Json";
-            this.btnSaveJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSaveJson.ToolTipText = "Save JSON file";
-            this.btnSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
+            this.toolSaveJson.Image = ((System.Drawing.Image)(resources.GetObject("toolSaveJson.Image")));
+            this.toolSaveJson.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSaveJson.Name = "toolSaveJson";
+            this.toolSaveJson.Size = new System.Drawing.Size(69, 45);
+            this.toolSaveJson.Text = "Save Json";
+            this.toolSaveJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolSaveJson.ToolTipText = "Save JSON file";
+            this.toolSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 48);
             // 
-            // btnCopyXml
+            // toolCopyXml
             // 
-            this.btnCopyXml.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyXml.Image")));
-            this.btnCopyXml.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCopyXml.Name = "btnCopyXml";
-            this.btnCopyXml.Size = new System.Drawing.Size(68, 45);
-            this.btnCopyXml.Text = "Copy Xml";
-            this.btnCopyXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCopyXml.Click += new System.EventHandler(this.btnCopyXml_Click);
+            this.toolCopyXml.Image = ((System.Drawing.Image)(resources.GetObject("toolCopyXml.Image")));
+            this.toolCopyXml.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCopyXml.Name = "toolCopyXml";
+            this.toolCopyXml.Size = new System.Drawing.Size(68, 45);
+            this.toolCopyXml.Text = "Copy Xml";
+            this.toolCopyXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolCopyXml.Click += new System.EventHandler(this.btnCopyXml_Click);
             // 
-            // btnSaveXml
+            // toolSaveXml
             // 
-            this.btnSaveXml.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveXml.Image")));
-            this.btnSaveXml.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSaveXml.Name = "btnSaveXml";
-            this.btnSaveXml.Size = new System.Drawing.Size(65, 45);
-            this.btnSaveXml.Text = "Save Xml";
-            this.btnSaveXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSaveXml.Click += new System.EventHandler(this.btnSaveXml_Click);
+            this.toolSaveXml.Image = ((System.Drawing.Image)(resources.GetObject("toolSaveXml.Image")));
+            this.toolSaveXml.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSaveXml.Name = "toolSaveXml";
+            this.toolSaveXml.Size = new System.Drawing.Size(65, 45);
+            this.toolSaveXml.Text = "Save Xml";
+            this.toolSaveXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolSaveXml.Click += new System.EventHandler(this.btnSaveXml_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 48);
             // 
-            // btnCopyCSharp
+            // toolCopyCSharp
             // 
-            this.btnCopyCSharp.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyCSharp.Image")));
-            this.btnCopyCSharp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCopyCSharp.Name = "btnCopyCSharp";
-            this.btnCopyCSharp.Size = new System.Drawing.Size(62, 45);
-            this.btnCopyCSharp.Text = "Copy C#";
-            this.btnCopyCSharp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCopyCSharp.ToolTipText = "Save JSON file";
-            this.btnCopyCSharp.Click += new System.EventHandler(this.btnCopyCSharp_Click);
+            this.toolCopyCSharp.Image = ((System.Drawing.Image)(resources.GetObject("toolCopyCSharp.Image")));
+            this.toolCopyCSharp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCopyCSharp.Name = "toolCopyCSharp";
+            this.toolCopyCSharp.Size = new System.Drawing.Size(62, 45);
+            this.toolCopyCSharp.Text = "Copy C#";
+            this.toolCopyCSharp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolCopyCSharp.ToolTipText = "Save JSON file";
+            this.toolCopyCSharp.Click += new System.EventHandler(this.btnCopyCSharp_Click);
             // 
-            // btnSaveCSharp
+            // toolSaveCSharp
             // 
-            this.btnSaveCSharp.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveCSharp.Image")));
-            this.btnSaveCSharp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSaveCSharp.Name = "btnSaveCSharp";
-            this.btnSaveCSharp.Size = new System.Drawing.Size(59, 45);
-            this.btnSaveCSharp.Text = "Save C#";
-            this.btnSaveCSharp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSaveCSharp.ToolTipText = "Save JSON file";
-            this.btnSaveCSharp.Click += new System.EventHandler(this.btnSaveCSharp_Click);
+            this.toolSaveCSharp.Image = ((System.Drawing.Image)(resources.GetObject("toolSaveCSharp.Image")));
+            this.toolSaveCSharp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSaveCSharp.Name = "toolSaveCSharp";
+            this.toolSaveCSharp.Size = new System.Drawing.Size(59, 45);
+            this.toolSaveCSharp.Text = "Save C#";
+            this.toolSaveCSharp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolSaveCSharp.ToolTipText = "Save JSON file";
+            this.toolSaveCSharp.Click += new System.EventHandler(this.btnSaveCSharp_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 48);
             // 
-            // btnHelp
+            // toolHelp
             // 
-            this.btnHelp.Image = global::excel2json.Properties.Resources.about;
-            this.btnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(39, 45);
-            this.btnHelp.Text = "Help";
-            this.btnHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnHelp.ToolTipText = "Help Document on web";
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            this.toolHelp.Image = global::excel2json.Properties.Resources.about;
+            this.toolHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolHelp.Name = "toolHelp";
+            this.toolHelp.Size = new System.Drawing.Size(39, 45);
+            this.toolHelp.Text = "Help";
+            this.toolHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolHelp.ToolTipText = "Help Document on web";
+            this.toolHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // splitContainer1
             // 
@@ -323,7 +236,6 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.panelExcelDropBox);
-            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -377,144 +289,6 @@
             this.labelExcelFile.Text = "Drop you .xlsx file here!";
             this.labelExcelFile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.checkBoxCellJson);
-            this.groupBox1.Controls.Add(this.textBoxExculdePrefix);
-            this.groupBox1.Controls.Add(label7);
-            this.groupBox1.Controls.Add(label6);
-            this.groupBox1.Controls.Add(this.comboBoxSheetName);
-            this.groupBox1.Controls.Add(label5);
-            this.groupBox1.Controls.Add(this.comboBoxDateFormat);
-            this.groupBox1.Controls.Add(this.btnReimport);
-            this.groupBox1.Controls.Add(label4);
-            this.groupBox1.Controls.Add(this.comboBoxLowcase);
-            this.groupBox1.Controls.Add(label3);
-            this.groupBox1.Controls.Add(this.comboBoxHeader);
-            this.groupBox1.Controls.Add(label2);
-            this.groupBox1.Controls.Add(label1);
-            this.groupBox1.Controls.Add(this.comboBoxEncoding);
-            this.groupBox1.Controls.Add(this.comboBoxType);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(8, 200);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(8);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(270, 280);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Options";
-            // 
-            // checkBoxCellJson
-            // 
-            this.checkBoxCellJson.AutoSize = true;
-            this.checkBoxCellJson.Checked = true;
-            this.checkBoxCellJson.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCellJson.Location = new System.Drawing.Point(54, 207);
-            this.checkBoxCellJson.Name = "checkBoxCellJson";
-            this.checkBoxCellJson.Size = new System.Drawing.Size(186, 16);
-            this.checkBoxCellJson.TabIndex = 15;
-            this.checkBoxCellJson.Text = "Convert Json String in Cell";
-            this.checkBoxCellJson.UseVisualStyleBackColor = true;
-            // 
-            // textBoxExculdePrefix
-            // 
-            this.textBoxExculdePrefix.Location = new System.Drawing.Point(114, 180);
-            this.textBoxExculdePrefix.Name = "textBoxExculdePrefix";
-            this.textBoxExculdePrefix.Size = new System.Drawing.Size(150, 21);
-            this.textBoxExculdePrefix.TabIndex = 14;
-            // 
-            // comboBoxSheetName
-            // 
-            this.comboBoxSheetName.DisplayMember = "0";
-            this.comboBoxSheetName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSheetName.FormattingEnabled = true;
-            this.comboBoxSheetName.Items.AddRange(new object[] {
-            "Yes",
-            "No"});
-            this.comboBoxSheetName.Location = new System.Drawing.Point(114, 153);
-            this.comboBoxSheetName.Name = "comboBoxSheetName";
-            this.comboBoxSheetName.Size = new System.Drawing.Size(150, 20);
-            this.comboBoxSheetName.TabIndex = 10;
-            this.comboBoxSheetName.ValueMember = "0";
-            // 
-            // comboBoxDateFormat
-            // 
-            this.comboBoxDateFormat.DisplayMember = "0";
-            this.comboBoxDateFormat.FormattingEnabled = true;
-            this.comboBoxDateFormat.Items.AddRange(new object[] {
-            "yyyy/MM/dd",
-            "yyyy/MM/dd hh:mm:ss"});
-            this.comboBoxDateFormat.Location = new System.Drawing.Point(114, 127);
-            this.comboBoxDateFormat.Name = "comboBoxDateFormat";
-            this.comboBoxDateFormat.Size = new System.Drawing.Size(150, 20);
-            this.comboBoxDateFormat.TabIndex = 8;
-            this.comboBoxDateFormat.ValueMember = "0";
-            // 
-            // btnReimport
-            // 
-            this.btnReimport.Location = new System.Drawing.Point(85, 238);
-            this.btnReimport.Name = "btnReimport";
-            this.btnReimport.Size = new System.Drawing.Size(75, 23);
-            this.btnReimport.TabIndex = 7;
-            this.btnReimport.Text = "Reimport";
-            this.btnReimport.UseVisualStyleBackColor = true;
-            this.btnReimport.Click += new System.EventHandler(this.btnReimport_Click);
-            // 
-            // comboBoxLowcase
-            // 
-            this.comboBoxLowcase.DisplayMember = "0";
-            this.comboBoxLowcase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxLowcase.FormattingEnabled = true;
-            this.comboBoxLowcase.Items.AddRange(new object[] {
-            "Yes",
-            "No"});
-            this.comboBoxLowcase.Location = new System.Drawing.Point(114, 75);
-            this.comboBoxLowcase.Name = "comboBoxLowcase";
-            this.comboBoxLowcase.Size = new System.Drawing.Size(150, 20);
-            this.comboBoxLowcase.TabIndex = 5;
-            this.comboBoxLowcase.ValueMember = "0";
-            // 
-            // comboBoxHeader
-            // 
-            this.comboBoxHeader.DisplayMember = "0";
-            this.comboBoxHeader.FormattingEnabled = true;
-            this.comboBoxHeader.Items.AddRange(new object[] {
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.comboBoxHeader.Location = new System.Drawing.Point(114, 101);
-            this.comboBoxHeader.Name = "comboBoxHeader";
-            this.comboBoxHeader.Size = new System.Drawing.Size(150, 20);
-            this.comboBoxHeader.TabIndex = 3;
-            this.comboBoxHeader.ValueMember = "0";
-            // 
-            // comboBoxEncoding
-            // 
-            this.comboBoxEncoding.DisplayMember = "0";
-            this.comboBoxEncoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEncoding.FormattingEnabled = true;
-            this.comboBoxEncoding.Location = new System.Drawing.Point(114, 49);
-            this.comboBoxEncoding.Name = "comboBoxEncoding";
-            this.comboBoxEncoding.Size = new System.Drawing.Size(150, 20);
-            this.comboBoxEncoding.TabIndex = 0;
-            this.comboBoxEncoding.ValueMember = "0";
-            // 
-            // comboBoxType
-            // 
-            this.comboBoxType.DisplayMember = "0";
-            this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Items.AddRange(new object[] {
-            "Array",
-            "Dict Object"});
-            this.comboBoxType.Location = new System.Drawing.Point(114, 23);
-            this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(150, 20);
-            this.comboBoxType.TabIndex = 0;
-            this.comboBoxType.ValueMember = "0";
-            // 
             // tabControlCode
             // 
             this.tabControlCode.Controls.Add(this.tabPageJson);
@@ -561,6 +335,16 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
+            // toolImportExcel
+            // 
+            this.toolImportExcel.Image = global::excel2json.Properties.Resources.excel;
+            this.toolImportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolImportExcel.Name = "toolImportExcel";
+            this.toolImportExcel.Size = new System.Drawing.Size(85, 45);
+            this.toolImportExcel.Text = "Import Excel";
+            this.toolImportExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolImportExcel.ToolTipText = "Import Excel .xlsx file";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -586,8 +370,6 @@
             this.panelExcelDropBox.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExcel)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.tabControlCode.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -598,38 +380,29 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.ToolStripButton btnImportExcel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton btnHelp;
+        private System.Windows.Forms.ToolStripButton toolHelp;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ToolStripButton btnCopyJson;
+        private System.Windows.Forms.ToolStripButton toolCopyJson;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panelExcelDropBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.PictureBox pictureBoxExcel;
         private System.Windows.Forms.Label labelExcelFile;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBoxEncoding;
-        private System.Windows.Forms.ComboBox comboBoxType;
-        private System.Windows.Forms.ComboBox comboBoxLowcase;
-        private System.Windows.Forms.ComboBox comboBoxHeader;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
-        private System.Windows.Forms.ToolStripButton btnSaveJson;
+        private System.Windows.Forms.ToolStripButton toolSaveJson;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.Button btnReimport;
         private System.Windows.Forms.TabControl tabControlCode;
         private System.Windows.Forms.TabPage tabPageJson;
-        private System.Windows.Forms.ComboBox comboBoxDateFormat;
-        private System.Windows.Forms.ComboBox comboBoxSheetName;
         private System.Windows.Forms.TabPage tabCSharp;
-        private System.Windows.Forms.ToolStripButton btnCopyCSharp;
-        private System.Windows.Forms.ToolStripButton btnSaveCSharp;
-        private System.Windows.Forms.TextBox textBoxExculdePrefix;
-        private System.Windows.Forms.CheckBox checkBoxCellJson;
+        private System.Windows.Forms.ToolStripButton toolCopyCSharp;
+        private System.Windows.Forms.ToolStripButton toolSaveCSharp;
         private System.Windows.Forms.TabPage tabPageXml;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton btnCopyXml;
-        private System.Windows.Forms.ToolStripButton btnSaveXml;
+        private System.Windows.Forms.ToolStripButton toolCopyXml;
+        private System.Windows.Forms.ToolStripButton toolSaveXml;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton toolImportExcel;
+        private System.Windows.Forms.ToolStripButton toolReimport;
     }
 }

@@ -46,7 +46,7 @@ namespace excel2json
                         TimeSpan dur = endTime - startTime;
                         Console.WriteLine(
                             string.Format("[{0}]：\tConversion complete in [{1}ms].",
-                            Path.GetFileName(options.ExcelPath),
+                            Path.GetFileName(options.excelPath),
                             dur.TotalMilliseconds)
                             );
                     }
@@ -64,55 +64,36 @@ namespace excel2json
         /// <param name="options">命令行参数</param>
         private static void Run(Options options)
         {
-
-            //-- Excel File 
-            string excelPath = options.ExcelPath;
-            string excelName = Path.GetFileNameWithoutExtension(options.ExcelPath);
-
-            //-- Header
-            int header = options.HeaderRows;
+            //-- Excel File
+            string excelPath = options.excelPath;
+            string excelName = Path.GetFileNameWithoutExtension(options.excelPath);
 
             //-- Encoding
             Encoding cd = new UTF8Encoding(false);
-            if (options.Encoding != "utf8-nobom")
-            {
-                foreach (EncodingInfo ei in Encoding.GetEncodings())
-                {
-                    Encoding e = ei.GetEncoding();
-                    if (e.HeaderName == options.Encoding)
-                    {
-                        cd = e;
-                        break;
-                    }
-                }
-            }
-
-            //-- Date Format
-            string dateFormat = options.DateFormat;
-
-            //-- Export path
-            string exportPath;
-            if (options.JsonPath != null && options.JsonPath.Length > 0)
-            {
-                exportPath = options.JsonPath;
-            }
-            else
-            {
-                exportPath = Path.ChangeExtension(excelPath, ".json");
-            }
 
             //-- Load Excel
             ExcelLoader excel = new ExcelLoader(excelPath);
+            var tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
 
-            //-- export
-            JsonExporter exporter = new JsonExporter(excel, options.Lowcase, options.ExportArray, dateFormat, options.ForceSheetName, header, options.ExcludePrefix, options.CellJson);
-            exporter.SaveToFile(exportPath, cd);
-
-            //-- 生成C#定义文件
-            if (options.CSharpPath != null && options.CSharpPath.Length > 0)
+            //-- export json
+            if (options.jsonPath != null && options.jsonPath.Length > 0)
             {
-                CSDefineGenerator generator = new CSDefineGenerator(excelName, excel, options.ExcludePrefix);
-                generator.SaveToFile(options.CSharpPath, cd);
+                JsonExporter jsonExporter = new JsonExporter(tableInfos);
+                jsonExporter.SaveToFile(options.jsonPath, cd);
+            }
+
+            //-- export xml
+            if (options.xmlPath != null && options.xmlPath.Length > 0)
+            {
+                XmlExporter xmlExporter = new XmlExporter(tableInfos);
+                xmlExporter.SaveToFile(options.xmlPath, cd);
+            }
+
+            //-- export c#
+            if (options.csharpPath != null && options.csharpPath.Length > 0)
+            {
+                CSharpExporter csharpExporter = new CSharpExporter(tableInfos, excelName);
+                csharpExporter.SaveToFile(options.csharpPath, cd);
             }
         }
     }

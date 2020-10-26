@@ -1,6 +1,4 @@
-﻿using System;
-using CommandLine;
-using CommandLine.Text;
+﻿using CommandLine;
 
 namespace excel2json
 {
@@ -13,75 +11,32 @@ namespace excel2json
         {
             public Options()
             {
-                this.HeaderRows = 3;
-                this.Encoding = "utf8-nobom";
-                this.Lowcase = false;
-                this.ExportArray = false;
-                this.ForceSheetName = false;
             }
 
             [Option('i', "input", Required = true, HelpText = "input excel file path.")]
-            public string ExcelPath {
+            public string excelPath
+            {
                 get;
                 set;
             }
 
             [Option('j', "json", Required = false, HelpText = "export json file path.")]
-            public string JsonPath {
+            public string jsonPath
+            {
+                get;
+                set;
+            }
+
+            [Option('x', "xml", Required = false, HelpText = "export xml file path.")]
+            public string xmlPath
+            {
                 get;
                 set;
             }
 
             [Option('p', "csharp", Required = false, HelpText = "export C# data struct code file path.")]
-            public string CSharpPath {
-                get;
-                set;
-            }
-
-            [Option('h', "header", Required = false, DefaultValue = 1, HelpText = "number lines in sheet as header.")]
-            public int HeaderRows {
-                get;
-                set;
-            }
-
-            [Option('e', "encoding", Required = false, DefaultValue = "utf8-nobom", HelpText = "export file encoding.")]
-            public string Encoding {
-                get;
-                set;
-            }
-
-            [Option('l', "lowcase", Required = false, DefaultValue = false, HelpText = "convert filed name to lowcase.")]
-            public bool Lowcase {
-                get;
-                set;
-            }
-
-            [Option('a', "array", Required = false, DefaultValue = false, HelpText = "export as array, otherwise as dict object.")]
-            public bool ExportArray {
-                get;
-                set;
-            }
-
-            [Option('d', "date", Required = false, DefaultValue = "yyyy/MM/dd", HelpText = "Date Format String, example: dd / MM / yyy hh: mm:ss.")]
-            public string DateFormat {
-                get;
-                set;
-            }
-
-            [Option('s', "sheet", Required = false, DefaultValue = false, HelpText = "export with sheet name, even there's only one sheet.")]
-            public bool ForceSheetName {
-                get;
-                set;
-            }
-
-            [Option('x', "exclude_prefix", Required = false, DefaultValue = "", HelpText = "exclude sheet or column start with specified prefix.")]
-            public string ExcludePrefix {
-                get;
-                set;
-            }
-
-            [Option('c', "cell_json", Required = false, DefaultValue = false, HelpText = "convert json string in cell")]
-            public bool CellJson {
+            public string csharpPath
+            {
                 get;
                 set;
             }

@@ -54,35 +54,19 @@ namespace excel2json.GUI
             mCSharpTextBox = createTextBoxInTab(this.tabCSharp);
             ScintillaLexers.CreateLexer(mCSharpTextBox, LexerEnumerations.LexerType.Cs);
 
-            //-- componet init states
-            this.comboBoxType.SelectedIndex = 0;
-            this.comboBoxLowcase.SelectedIndex = 1;
-            this.comboBoxHeader.SelectedIndex = 1;
-            this.comboBoxDateFormat.SelectedIndex = 0;
-            this.comboBoxSheetName.SelectedIndex = 1;
-
-            this.comboBoxEncoding.Items.Clear();
-            this.comboBoxEncoding.Items.Add("utf8-nobom");
-            foreach (EncodingInfo ei in Encoding.GetEncodings())
-            {
-                Encoding e = ei.GetEncoding();
-                this.comboBoxEncoding.Items.Add(e.HeaderName);
-            }
-            this.comboBoxEncoding.SelectedIndex = 0;
-
             //-- button list
             mExportButtonList = new List<ToolStripButton>();
-            mExportButtonList.Add(this.btnCopyJson);
-            mExportButtonList.Add(this.btnSaveJson);
-            mExportButtonList.Add(this.btnCopyXml);
-            mExportButtonList.Add(this.btnSaveXml);
-            mExportButtonList.Add(this.btnCopyCSharp);
-            mExportButtonList.Add(this.btnSaveCSharp);
+            mExportButtonList.Add(this.toolCopyJson);
+            mExportButtonList.Add(this.toolSaveJson);
+            mExportButtonList.Add(this.toolCopyXml);
+            mExportButtonList.Add(this.toolSaveXml);
+            mExportButtonList.Add(this.toolCopyCSharp);
+            mExportButtonList.Add(this.toolSaveCSharp);
             enableExportButtons(false);
 
             //-- data manager
             mDataMgr = new DataManager();
-            this.btnReimport.Enabled = false;
+            this.toolReimport.Enabled = false;
         }
 
         /// <summary>
@@ -120,7 +104,7 @@ namespace excel2json.GUI
             FileName = System.IO.Path.GetFileNameWithoutExtension(path);
 
             //-- update ui
-            this.btnReimport.Enabled = true;
+            this.toolReimport.Enabled = true;
             this.labelExcelFile.Text = path;
             enableExportButtons(false);
 
@@ -129,15 +113,7 @@ namespace excel2json.GUI
 
             //-- load options from ui
             Program.Options options = new Program.Options();
-            options.ExcelPath = path;
-            options.ExportArray = this.comboBoxType.SelectedIndex == 0;
-            options.Encoding = this.comboBoxEncoding.SelectedText;
-            options.Lowcase = this.comboBoxLowcase.SelectedIndex == 0;
-            options.HeaderRows = int.Parse(this.comboBoxHeader.Text);
-            options.DateFormat = this.comboBoxDateFormat.Text;
-            options.ForceSheetName = this.comboBoxSheetName.SelectedIndex == 0;
-            options.ExcludePrefix = this.textBoxExculdePrefix.Text;
-            options.CellJson = this.checkBoxCellJson.Checked;
+            options.excelPath = path;
 
             //-- start import
             this.backgroundWorker.RunWorkerAsync(options);
@@ -217,9 +193,9 @@ namespace excel2json.GUI
                 this.statusLabel.IsLink = false;
                 this.statusLabel.Text = "Load completed.";
 
-                mJsonTextBox.Text = mDataMgr.JsonContext;
-                mXmlTextBox.Text = mDataMgr.XmlContext;
-                mCSharpTextBox.Text = mDataMgr.CSharpCode;
+                mJsonTextBox.Text = mDataMgr.jsonContext;
+                mXmlTextBox.Text = mDataMgr.xmlContext;
+                mCSharpTextBox.Text = mDataMgr.csharpCode;
 
                 enableExportButtons(true);
             }
@@ -230,13 +206,7 @@ namespace excel2json.GUI
         /// </summary>
         private void btnImportExcel_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.RestoreDirectory = true;
-            dlg.Filter = "Excel File(*.xlsx)|*.xlsx";
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                this.loadExcelAsync(dlg.FileName);
-            }
+
         }
 
         /// <summary>
@@ -303,7 +273,7 @@ namespace excel2json.GUI
         {
             lock (mDataMgr)
             {
-                Clipboard.SetText(mDataMgr.JsonContext);
+                Clipboard.SetText(mDataMgr.jsonContext);
                 showStatus("Json text copyed to clipboard.", Color.Black);
             }
         }
@@ -323,7 +293,7 @@ namespace excel2json.GUI
         {
             lock (mDataMgr)
             {
-                Clipboard.SetText(mDataMgr.XmlContext);
+                Clipboard.SetText(mDataMgr.xmlContext);
                 showStatus("Xml text copyed to clipboard.", Color.Black);
             }
         }
@@ -356,7 +326,7 @@ namespace excel2json.GUI
         {
             lock (mDataMgr)
             {
-                Clipboard.SetText(mDataMgr.CSharpCode);
+                Clipboard.SetText(mDataMgr.csharpCode);
                 showStatus("C# code copyed to clipboard.", Color.Black);
             }
         }

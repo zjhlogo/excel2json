@@ -1,51 +1,68 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace excel2json.GUI
 {
-
     /// <summary>
     /// 为GUI模式提供的整体数据管理
     /// </summary>
     class DataManager
     {
-
         // 数据导入设置
-        private Program.Options mOptions;
-        private Encoding mEncoding;
+        private Program.Options _options;
+        private Encoding _encoding;
 
         // 导出数据
-        private JsonExporter mJson;
-        private XmlExporter mXml;
-        private CSDefineGenerator mCSharp;
+        private JsonExporter _json;
+        private XmlExporter _xml;
+        private CSharpExporter _csharp;
 
         /// <summary>
         /// 导出的Json文本
         /// </summary>
-        public string JsonContext {
-            get {
-                if (mJson != null)
-                    return mJson.context;
+        public string jsonContext
+        {
+            get
+            {
+                if (_json != null)
+                {
+                    return _json.context;
+                }
                 else
+                {
                     return "";
+                }
             }
         }
 
-        public string XmlContext {
-            get {
-                if (mXml != null)
-                    return mXml.context;
+        public string xmlContext
+        {
+            get
+            {
+                if (_xml != null)
+                {
+                    return _xml.context;
+                }
                 else
+                {
                     return "";
+                }
             }
         }
 
-        public string CSharpCode {
-            get {
-                if (mCSharp != null)
-                    return mCSharp.code;
+        public string csharpCode
+        {
+            get
+            {
+                if (_csharp != null)
+                {
+                    return _csharp.code;
+                }
                 else
+                {
                     return "";
+                }
             }
         }
 
@@ -55,26 +72,27 @@ namespace excel2json.GUI
         /// <param name="filePath">保存路径</param>
         public void saveJson(string filePath)
         {
-            if (mJson != null)
+            if (_json != null)
             {
-                mJson.SaveToFile(filePath, mEncoding);
+                _json.SaveToFile(filePath, _encoding);
             }
         }
 
         public void saveXml(string filePath)
         {
-            if (mXml != null)
+            if (_xml != null)
             {
-                mXml.SaveToFile(filePath, mEncoding);
+                _xml.SaveToFile(filePath, _encoding);
             }
         }
 
         public void saveCSharp(string filePath)
         {
-            if (mCSharp != null)
-                mCSharp.SaveToFile(filePath, mEncoding);
+            if (_csharp != null)
+            {
+                _csharp.SaveToFile(filePath, _encoding);
+            }
         }
-
 
         /// <summary>
         /// 加载Excel文件
@@ -82,40 +100,29 @@ namespace excel2json.GUI
         /// <param name="options">导入设置</param>
         public void loadExcel(Program.Options options)
         {
-            mOptions = options;
+            _options = options;
 
             //-- Excel File
-            string excelPath = options.ExcelPath;
+            string excelPath = options.excelPath;
             string excelName = Path.GetFileNameWithoutExtension(excelPath);
 
-            //-- Header
-            int header = options.HeaderRows;
-
             //-- Encoding
-            Encoding cd = new UTF8Encoding(false);
-            if (options.Encoding != "utf8-nobom")
-            {
-                foreach (EncodingInfo ei in Encoding.GetEncodings())
-                {
-                    Encoding e = ei.GetEncoding();
-                    if (e.HeaderName == options.Encoding)
-                    {
-                        cd = e;
-                        break;
-                    }
-                }
-            }
-            mEncoding = cd;
+            _encoding = new UTF8Encoding(false);
 
             //-- Load Excel
             ExcelLoader excel = new ExcelLoader(excelPath);
 
-            //-- C# 结构体定义
-            mCSharp = new CSDefineGenerator(excelPath, excel, options.ExcludePrefix);
+            //-- Parse Excel
+            List<ExcelParser.TableInfo> tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
 
-            //-- 导出JSON
-            mJson = new JsonExporter(excel, options.Lowcase, options.ExportArray, options.DateFormat, options.ForceSheetName, header, options.ExcludePrefix, options.CellJson);
-            mXml = new XmlExporter(excel, options.Lowcase, options.ExportArray, options.DateFormat, options.ForceSheetName, header, options.ExcludePrefix, options.CellJson);
+            //-- 导出 json
+            _json = new JsonExporter(tableInfos);
+
+            //-- 导出 xml
+            _xml = new XmlExporter(tableInfos);
+
+            //-- C# 结构体定义
+            _csharp = new CSharpExporter(tableInfos, excelName);
         }
     }
 }

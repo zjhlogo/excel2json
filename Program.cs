@@ -76,24 +76,28 @@ namespace excel2json
             var tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
 
             //-- export json
-            if (options.jsonPath != null && options.jsonPath.Length > 0)
+            if (options.jsonDir != null && options.jsonDir.Length > 0)
             {
-                JsonExporter jsonExporter = new JsonExporter(tableInfos);
-                jsonExporter.SaveToFile(options.jsonPath, cd);
+                JsonExporter jsonExporter = new JsonExporter(tableInfos, excelName);
+
+                var finalPath = Path.Combine(options.jsonDir, excelName + ".json");
+                jsonExporter.SaveToFile(finalPath, cd);
             }
 
             //-- export xml
-            if (options.xmlPath != null && options.xmlPath.Length > 0)
+            if (options.xmlDir != null && options.xmlDir.Length > 0)
             {
-                XmlExporter xmlExporter = new XmlExporter(tableInfos);
-                xmlExporter.SaveToFile(options.xmlPath, cd);
+                XmlExporter xmlExporter = new XmlExporter(tableInfos, excelName);
+                var finalPath = Path.Combine(options.xmlDir, excelName + ".xml");
+                xmlExporter.SaveToFile(finalPath, cd);
             }
 
             //-- export c#
-            if (options.csharpPath != null && options.csharpPath.Length > 0)
+            if (options.csharpDir != null && options.csharpDir.Length > 0)
             {
                 CSharpExporter csharpExporter = new CSharpExporter(tableInfos, excelName);
-                csharpExporter.SaveToFile(options.csharpPath, cd);
+                var finalPath = Path.Combine(options.csharpDir, excelName + ".cs");
+                csharpExporter.SaveToFile(finalPath, cd);
             }
         }
     }

@@ -100,6 +100,7 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NameFormater.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Program.Options.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

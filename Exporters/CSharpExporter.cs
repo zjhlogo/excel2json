@@ -32,7 +32,13 @@ namespace excel2json
 
             foreach (var tableInfo in tableInfos)
             {
-                sb.AppendFormat("public class {0}", tableInfo.tableName);
+                var className = NameFormater.FormatName(excelName, false);
+                if (tableInfo.parseMode == ExcelParser.TableType.Config)
+                {
+                    className = className.Replace("Cfg", "AttrCfg");
+                }
+
+                sb.AppendFormat("public class {0}", className);
                 sb.AppendLine();
                 sb.Append("{");
                 sb.AppendLine();
@@ -40,7 +46,7 @@ namespace excel2json
                 {
                     var fieldData = tableInfo.fieldInfos[i];
 
-                    var comment = FormatComment(fieldData.comment);
+                    var comment = NameFormater.FormatComment(fieldData.comment);
                     sb.AppendFormat("    public {0} {1}; // {2}", fieldData.type, fieldData.name, comment);
                     sb.AppendLine();
                 }
@@ -52,15 +58,6 @@ namespace excel2json
             sb.AppendLine("// End of Auto Generated Code");
 
             _code = sb.ToString();
-        }
-
-        private string FormatComment(string comment)
-        {
-            StringBuilder sb = new StringBuilder(comment);
-            sb = sb.Replace("\r\n", " ");
-            sb = sb.Replace("\r", " ");
-            sb = sb.Replace("\n", " ");
-            return sb.ToString();
         }
 
         public void SaveToFile(string filePath, Encoding encoding)

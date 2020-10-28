@@ -16,7 +16,7 @@ namespace excel2json
             }
         }
 
-        public JsonExporter(List<ExcelParser.TableInfo> tableInfos)
+        public JsonExporter(List<ExcelParser.TableInfo> tableInfos, string excelName)
         {
             var jsonSettings = new JsonSerializerSettings
             {
@@ -24,13 +24,13 @@ namespace excel2json
             };
 
             //-- convert to object
-            var fullDatas = ConvertSheet(tableInfos);
+            var fullDatas = ConvertSheet(tableInfos, excelName);
             if (fullDatas.Count == 1)
             {
                 //-- convert to json string
-                foreach(var kvp in fullDatas)
+                foreach(var table in fullDatas)
                 {
-                    _context = JsonConvert.SerializeObject(kvp.Value, jsonSettings);
+                    _context = JsonConvert.SerializeObject(table, jsonSettings);
                 }
             }
             else
@@ -40,9 +40,9 @@ namespace excel2json
             }
         }
 
-        private Dictionary<string, List<Dictionary<string, object>>> ConvertSheet(List<ExcelParser.TableInfo> tableInfos)
+        private List<List<Dictionary<string, object>>> ConvertSheet(List<ExcelParser.TableInfo> tableInfos, string excelName)
         {
-            Dictionary<string, List<Dictionary<string, object>>> fullDatas = new Dictionary<string, List<Dictionary<string, object>>>();
+            List<List<Dictionary<string, object>>> fullDatas = new List<List<Dictionary<string, object>>>();
             foreach (var tableInfo in tableInfos)
             {
                 List<Dictionary<string, object>> rowDatas = new List<Dictionary<string, object>>();
@@ -59,7 +59,7 @@ namespace excel2json
                     rowDatas.Add(rowData);
                 }
 
-                fullDatas.Add(tableInfo.tableName, rowDatas);
+                fullDatas.Add(rowDatas);
             }
 
             return fullDatas;

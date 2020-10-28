@@ -116,10 +116,10 @@ namespace excel2json.GUI
             List<ExcelParser.TableInfo> tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
 
             //-- 导出 json
-            _json = new JsonExporter(tableInfos);
+            _json = new JsonExporter(tableInfos, excelName);
 
             //-- 导出 xml
-            _xml = new XmlExporter(tableInfos);
+            _xml = new XmlExporter(tableInfos, excelName);
 
             //-- C# 结构体定义
             _csharp = new CSharpExporter(tableInfos, excelName);

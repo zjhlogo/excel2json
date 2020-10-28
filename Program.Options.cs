@@ -20,22 +20,22 @@ namespace excel2json
                 set;
             }
 
-            [Option('j', "json", Required = false, HelpText = "export json file path.")]
-            public string jsonPath
+            [Option('j', "json", Required = false, HelpText = "export json file dir.")]
+            public string jsonDir
             {
                 get;
                 set;
             }
 
-            [Option('x', "xml", Required = false, HelpText = "export xml file path.")]
-            public string xmlPath
+            [Option('x', "xml", Required = false, HelpText = "export xml file dir.")]
+            public string xmlDir
             {
                 get;
                 set;
             }
 
-            [Option('p', "csharp", Required = false, HelpText = "export C# data struct code file path.")]
-            public string csharpPath
+            [Option('p', "csharp", Required = false, HelpText = "export C# data struct code file dir.")]
+            public string csharpDir
             {
                 get;
                 set;

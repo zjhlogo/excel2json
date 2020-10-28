@@ -24,7 +24,6 @@ namespace excel2json
         public class TableInfo
         {
             public TableType parseMode = TableType.Unknown;
-            public string tableName;
             public int startRow;
             public int endRow;
             public int numRows;
@@ -47,12 +46,11 @@ namespace excel2json
                 var firstColumn = row[0].ToString();
                 if (firstColumn == "[CONFIG_BEGIN]")
                 {
-                    if (tableInfo != null) throw new Exception(string.Format("Unclosed Config/Table {0}", tableInfo.tableName));
+                    if (tableInfo != null) throw new Exception("Unclosed Config/Table");
 
                     tableInfo = new TableInfo();
                     tableInfo.parseMode = TableType.Config;
                     tableInfo.startRow = i;
-                    tableInfo.tableName = row[1].ToString();
                 }
                 else if (firstColumn == "[CONFIG_END]")
                 {
@@ -63,12 +61,11 @@ namespace excel2json
                 }
                 else if (firstColumn == "[TABLE_BEGIN]")
                 {
-                    if (tableInfo != null) throw new Exception(string.Format("Unclosed Config/Table {0}", tableInfo.tableName));
+                    if (tableInfo != null) throw new Exception("Unclosed Config/Table");
 
                     tableInfo = new TableInfo();
                     tableInfo.parseMode = TableType.Table;
                     tableInfo.startRow = i;
-                    tableInfo.tableName = row[1].ToString();
                 }
                 else if (firstColumn == "[TABLE_END]")
                 {
@@ -102,7 +99,7 @@ namespace excel2json
                 FieldInfo field = new FieldInfo();
                 field.comment = sheet.Rows[i][0].ToString();
                 field.type = sheet.Rows[i][1].ToString();
-                field.name = sheet.Rows[i][2].ToString();
+                field.name = NameFormater.FormatName(sheet.Rows[i][2].ToString(), true);
 
                 field.datas.Add(ConvertData(field.type, sheet.Rows[i][3].ToString()));
 
@@ -130,7 +127,7 @@ namespace excel2json
             for (int columnIndex = 0; columnIndex < sheet.Columns.Count; ++columnIndex)
             {
                 var type = sheet.Rows[typeIndex][columnIndex].ToString();
-                var name = sheet.Rows[nameIndex][columnIndex].ToString();
+                var name = NameFormater.FormatName(sheet.Rows[nameIndex][columnIndex].ToString(), true);
                 if (name == "" || type == "") break;
 
                 FieldInfo field = new FieldInfo();
@@ -187,7 +184,7 @@ namespace excel2json
             {
                 return float.Parse(value);
             }
-            else if (type == "double" || type == "Fix128")
+            else if (type == "double")
             {
                 return double.Parse(value);
             }

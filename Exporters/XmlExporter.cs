@@ -37,12 +37,12 @@ namespace excel2json
             }
         }
 
-        public XmlExporter(List<ExcelParser.TableInfo> tableInfos)
+        public XmlExporter(List<ExcelParser.TableInfo> tableInfos, string excelName)
         {
-            _context = ConvertSheet(tableInfos);
+            _context = ConvertSheet(tableInfos, excelName);
         }
 
-        public string ConvertSheet(List<ExcelParser.TableInfo> tableInfos)
+        public string ConvertSheet(List<ExcelParser.TableInfo> tableInfos, string excelName)
         {
             ExcelParser.TableInfo attrs = null;
             ExcelParser.TableInfo table = null;
@@ -56,12 +56,17 @@ namespace excel2json
             var xmlExData = doc.CreateElement("ExData");
             doc.AppendChild(xmlExData);
 
+            XmlElement xmlTable = null;
+
+            if (table != null || attrs != null)
+            {
+                xmlTable = doc.CreateElement("Table");
+                xmlTable.SetAttribute("Name", NameFormater.FormatName(excelName, false));
+                xmlExData.AppendChild(xmlTable);
+            }
+
             if (table != null)
             {
-                var xmlTable = doc.CreateElement("Table");
-                xmlTable.SetAttribute("Name", table.tableName);
-                xmlExData.AppendChild(xmlTable);
-
                 var xmlColumnList = doc.CreateElement("ColumnList");
                 xmlTable.AppendChild(xmlColumnList);
 
@@ -81,27 +86,31 @@ namespace excel2json
                     xmlColumn.SetAttribute("DataType", finalDataType);
                     xmlColumnList.AppendChild(xmlColumn);
                 }
+            }
 
-                if (attrs != null)
+            if (attrs != null)
+            {
+                foreach (var fieldInfo in attrs.fieldInfos)
                 {
-                    foreach(var fieldInfo in attrs.fieldInfos)
+                    var xmlAttribute = doc.CreateElement("Attribute");
+                    xmlTable.AppendChild(xmlAttribute);
+
+                    string finalName = fieldInfo.name;
+                    string finalDataType = fieldInfo.type;
+                    if (_typeMap.TryGetValue(fieldInfo.type, out var mappingInfo))
                     {
-                        var xmlAttribute = doc.CreateElement("Attribute");
-
-                        string finalName = fieldInfo.name;
-                        string finalDataType = fieldInfo.type;
-                        if (_typeMap.TryGetValue(fieldInfo.type, out var mappingInfo))
-                        {
-                            finalName = mappingInfo.prefix + fieldInfo.name;
-                            finalDataType = mappingInfo.dataTypeIndex;
-                        }
-
-                        xmlAttribute.SetAttribute("Name", finalName);
-                        xmlAttribute.SetAttribute("DataType", finalDataType);
-                        xmlAttribute.SetAttribute("Value", fieldInfo.datas[0].ToString());
+                        finalName = mappingInfo.prefix + fieldInfo.name;
+                        finalDataType = mappingInfo.dataTypeIndex;
                     }
-                }
 
+                    xmlAttribute.SetAttribute("Name", finalName);
+                    xmlAttribute.SetAttribute("DataType", finalDataType);
+                    xmlAttribute.SetAttribute("Value", fieldInfo.datas[0].ToString());
+                }
+            }
+
+            if (table != null)
+            {
                 for (int i = 0; i < table.numRows; ++i)
                 {
                     var xmlRecord = doc.CreateElement("Record");

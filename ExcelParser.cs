@@ -99,7 +99,7 @@ namespace excel2json
                 FieldInfo field = new FieldInfo();
                 field.comment = sheet.Rows[i][0].ToString();
                 field.type = sheet.Rows[i][1].ToString();
-                field.name = NameFormater.FormatName(sheet.Rows[i][2].ToString(), true);
+                field.name = NameFormater.FormatCamelName(sheet.Rows[i][2].ToString(), true);
 
                 field.datas.Add(ConvertData(field.type, sheet.Rows[i][3].ToString()));
 
@@ -127,7 +127,7 @@ namespace excel2json
             for (int columnIndex = 0; columnIndex < sheet.Columns.Count; ++columnIndex)
             {
                 var type = sheet.Rows[typeIndex][columnIndex].ToString();
-                var name = NameFormater.FormatName(sheet.Rows[nameIndex][columnIndex].ToString(), true);
+                var name = NameFormater.FormatCamelName(sheet.Rows[nameIndex][columnIndex].ToString(), true);
                 if (name == "" || type == "") break;
 
                 FieldInfo field = new FieldInfo();

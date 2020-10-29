@@ -30,6 +30,7 @@ namespace excel2json
             {"int", new TypeMappingInfo("n_", "1", ConvertDefault)},
             {"int64", new TypeMappingInfo("n_", "2", ConvertDefault)},
             {"float", new TypeMappingInfo("f_", "3", ConvertDefault)},
+            {"Fix64", new TypeMappingInfo("f_", "3", ConvertDefault)},
             {"string", new TypeMappingInfo("s_", "4", ConvertDefault)},
         };
 
@@ -65,7 +66,7 @@ namespace excel2json
             if (table != null || attrs != null)
             {
                 xmlTable = doc.CreateElement("Table");
-                xmlTable.SetAttribute("Name", NameFormater.FormatName(excelName, false));
+                xmlTable.SetAttribute("Name", NameFormater.FormatCamelName(excelName, false));
                 xmlExData.AppendChild(xmlTable);
             }
 

@@ -28,6 +28,7 @@ namespace excel2json
             {"int64", new TypeMappingInfo("n_", "2")},
             {"float", new TypeMappingInfo("f_", "3")},
             {"string", new TypeMappingInfo("s_", "4")},
+            {"bool", new TypeMappingInfo("n_", "1")},
         };
 
         public string context
@@ -123,7 +124,21 @@ namespace excel2json
                             finalName = mappingInfo.prefix + table.fieldInfos[j].name;
                         }
 
-                        xmlRecord.SetAttribute(finalName, table.fieldInfos[j].datas[i].ToString());
+                        if (table.fieldInfos[j].type.Equals("bool", System.StringComparison.OrdinalIgnoreCase))
+                        {
+                            if (table.fieldInfos[j].datas[i].Equals(true))
+                            {
+                                xmlRecord.SetAttribute(finalName, "1");
+                            }
+                            else
+                            {
+                                xmlRecord.SetAttribute(finalName, "0");
+                            }
+                        }
+                        else
+                        {
+                            xmlRecord.SetAttribute(finalName, table.fieldInfos[j].datas[i].ToString());
+                        }
                     }
                     xmlTable.AppendChild(xmlRecord);
                 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -11,24 +12,25 @@ namespace excel2json
 
         class TypeMappingInfo
         {
-            public TypeMappingInfo(string pref, string index)
+            public TypeMappingInfo(string pref, string index, Func<object, string> conv)
             {
                 prefix = pref;
                 dataTypeIndex = index;
+                convertor = conv;
             }
 
             public string prefix;
             public string dataTypeIndex;
+            public Func<object, string> convertor;
         }
 
         private Dictionary<string, TypeMappingInfo> _typeMap = new Dictionary<string, TypeMappingInfo>()
         {
-            {"bool", new TypeMappingInfo("n_", "1") },
-            {"int", new TypeMappingInfo("n_", "1") },
-            {"int64", new TypeMappingInfo("n_", "2")},
-            {"float", new TypeMappingInfo("f_", "3")},
-            {"string", new TypeMappingInfo("s_", "4")},
-            {"bool", new TypeMappingInfo("n_", "1")},
+            {"bool", new TypeMappingInfo("n_", "1", ConvertBool)},
+            {"int", new TypeMappingInfo("n_", "1", ConvertDefault)},
+            {"int64", new TypeMappingInfo("n_", "2", ConvertDefault)},
+            {"float", new TypeMappingInfo("f_", "3", ConvertDefault)},
+            {"string", new TypeMappingInfo("s_", "4", ConvertDefault)},
         };
 
         public string context
@@ -119,27 +121,17 @@ namespace excel2json
                     for (int j = 0; j < table.numFields; ++j)
                     {
                         string finalName = table.fieldInfos[j].name;
+                        Func<object, string> convertor = ConvertDefault;
+
                         if (_typeMap.TryGetValue(table.fieldInfos[j].type, out var mappingInfo))
                         {
                             finalName = mappingInfo.prefix + table.fieldInfos[j].name;
+                            convertor = mappingInfo.convertor;
                         }
 
-                        if (table.fieldInfos[j].type.Equals("bool", System.StringComparison.OrdinalIgnoreCase))
-                        {
-                            if (table.fieldInfos[j].datas[i].Equals(true))
-                            {
-                                xmlRecord.SetAttribute(finalName, "1");
-                            }
-                            else
-                            {
-                                xmlRecord.SetAttribute(finalName, "0");
-                            }
-                        }
-                        else
-                        {
-                            xmlRecord.SetAttribute(finalName, table.fieldInfos[j].datas[i].ToString());
-                        }
+                        xmlRecord.SetAttribute(finalName, convertor(table.fieldInfos[j].datas[i]));
                     }
+
                     xmlTable.AppendChild(xmlRecord);
                 }
             }
@@ -168,6 +160,16 @@ namespace excel2json
                     writer.Write(_context);
                 }
             }
+        }
+
+        private static string ConvertBool(object value)
+        {
+            return (bool)value ? "1" : "0";
+        }
+
+        private static string ConvertDefault(object value)
+        {
+            return value.ToString();
         }
     }
 }

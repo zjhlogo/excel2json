@@ -23,6 +23,7 @@ namespace excel2json
 
         private Dictionary<string, TypeMappingInfo> _typeMap = new Dictionary<string, TypeMappingInfo>()
         {
+            {"bool", new TypeMappingInfo("n_", "1") },
             {"int", new TypeMappingInfo("n_", "1") },
             {"int64", new TypeMappingInfo("n_", "2")},
             {"float", new TypeMappingInfo("f_", "3")},

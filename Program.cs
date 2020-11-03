@@ -88,7 +88,7 @@ namespace excel2json
             if (options.xmlDir != null && options.xmlDir.Length > 0)
             {
                 XmlExporter xmlExporter = new XmlExporter(tableInfos, excelName);
-                var finalPath = Path.Combine(options.xmlDir, excelName + ".xml");
+                var finalPath = Path.Combine(options.xmlDir, xmlExporter.m_strFileName + ".xml");
                 xmlExporter.SaveToFile(finalPath, cd);
             }
 

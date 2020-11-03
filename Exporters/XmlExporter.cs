@@ -8,7 +8,7 @@ namespace excel2json
     class XmlExporter
     {
         private string _context = "";
-
+        public string m_strFileName = "";
         class TypeMappingInfo
         {
             public TypeMappingInfo(string pref, string index)
@@ -62,7 +62,8 @@ namespace excel2json
             if (table != null || attrs != null)
             {
                 xmlTable = doc.CreateElement("Table");
-                xmlTable.SetAttribute("Name", NameFormater.FormatName(excelName, false));
+                m_strFileName = NameFormater.FormatName(excelName, false);
+                xmlTable.SetAttribute("Name", m_strFileName);
                 xmlExData.AppendChild(xmlTable);
             }
 

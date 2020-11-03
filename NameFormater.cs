@@ -7,7 +7,7 @@ namespace excel2json
     {
         private static StringBuilder _sbFormatName = new StringBuilder();
 
-        public static string FormatName(string name, bool lowerCaseFirstChar)
+        public static string FormatCamelName(string name, bool lowerCaseFirstChar)
         {
             bool upperCase = !lowerCaseFirstChar;
 
@@ -24,16 +24,17 @@ namespace excel2json
                 {
                     _sbFormatName.Append(Char.ToLower(name[i]));
                     lowerCaseFirstChar = false;
+                    continue;
                 }
-                else if (upperCase)
+
+                if (upperCase)
                 {
                     _sbFormatName.Append(Char.ToUpper(name[i]));
                     upperCase = false;
+                    continue;
                 }
-                else
-                {
-                    _sbFormatName.Append(name[i]);
-                }
+
+                _sbFormatName.Append(name[i]);
             }
 
             return _sbFormatName.ToString();
@@ -41,17 +42,22 @@ namespace excel2json
 
         public static string FormatFileName(string name)
         {
+            var lowerName = name.ToLower().Replace(' ', '_');
+
             _sbFormatName.Clear();
-            for (int i = 0; i < name.Length; ++i)
+            for (int i = 0; i < lowerName.Length; ++i)
             {
-                if (name[i] == ' ')
+                if (lowerName[i] == '_' && _sbFormatName.Length <= 0)
                 {
-                    _sbFormatName.Append('_');
+                    continue;
                 }
-                else
+
+                if (Char.IsDigit(lowerName[i]) && _sbFormatName.Length <= 0)
                 {
-                    _sbFormatName.Append(Char.ToLower(name[i]));
+                    continue;
                 }
+
+                _sbFormatName.Append(lowerName[i]);
             }
 
             return _sbFormatName.ToString();

@@ -32,7 +32,7 @@ namespace excel2json
 
             foreach (var tableInfo in tableInfos)
             {
-                var className = NameFormater.FormatName(excelName, false);
+                var className = NameFormater.FormatCamelName(excelName, false);
                 if (tableInfo.parseMode == ExcelParser.TableType.Config)
                 {
                     className = className.Replace("Cfg", "AttrCfg");

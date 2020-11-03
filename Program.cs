@@ -80,7 +80,7 @@ namespace excel2json
             {
                 JsonExporter jsonExporter = new JsonExporter(tableInfos, excelName);
 
-                var finalPath = Path.Combine(options.jsonDir, excelName + ".json");
+                var finalPath = Path.Combine(options.jsonDir, NameFormater.FormatFileName(excelName) + ".json");
                 jsonExporter.SaveToFile(finalPath, cd);
             }
 
@@ -96,7 +96,7 @@ namespace excel2json
             if (options.csharpDir != null && options.csharpDir.Length > 0)
             {
                 CSharpExporter csharpExporter = new CSharpExporter(tableInfos, excelName);
-                var finalPath = Path.Combine(options.csharpDir, excelName + ".cs");
+                var finalPath = Path.Combine(options.csharpDir, NameFormater.FormatCamelName(excelName, false) + ".cs");
                 csharpExporter.SaveToFile(finalPath, cd);
             }
         }

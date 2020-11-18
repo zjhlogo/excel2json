@@ -40,6 +40,13 @@ namespace excel2json
                 get;
                 set;
             }
+
+            [Option('m', "meta", Required = false, HelpText = "meta files dir")]
+            public string metaDir
+            {
+                get;
+                set;
+            }
         }
     }
 }

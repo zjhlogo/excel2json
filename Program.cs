@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -70,34 +72,84 @@ namespace excel2json
 
             //-- Encoding
             Encoding cd = new UTF8Encoding(false);
-
-            //-- Load Excel
-            ExcelLoader excel = new ExcelLoader(excelPath);
-            var tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
-
+            
+            //-- Exporters
+            List<ExportTask> exportTasks = new List<ExportTask>();
+            
             //-- export json
-            if (options.jsonDir != null && options.jsonDir.Length > 0)
-            {
-                JsonExporter jsonExporter = new JsonExporter(tableInfos, excelName);
-
-                var finalPath = Path.Combine(options.jsonDir, NameFormater.FormatFileName(excelName) + ".json");
-                jsonExporter.SaveToFile(finalPath, cd);
-            }
-
+            if (!string.IsNullOrEmpty(options.jsonDir))
+                exportTasks.Add(new ExportTask(ExportJsonFile, MetaCenter.MetaType.Json, options.jsonDir));
+            
             //-- export xml
-            if (options.xmlDir != null && options.xmlDir.Length > 0)
+            if (!string.IsNullOrEmpty(options.xmlDir))
+                exportTasks.Add(new ExportTask(ExportXmlFile, MetaCenter.MetaType.Xml, options.xmlDir));
+            
+            //-- export csharp
+            if (!string.IsNullOrEmpty(options.csharpDir))
+                exportTasks.Add(new ExportTask(ExportCsharpFile, MetaCenter.MetaType.CSharp, options.csharpDir));
+            
+            //-- Load Meta
+            using (var metaCenter = new MetaCenter(options.metaDir, excelName, excelPath))
             {
-                XmlExporter xmlExporter = new XmlExporter(tableInfos, excelName);
-                var finalPath = Path.Combine(options.xmlDir, xmlExporter.m_strFileName + ".xml");
-                xmlExporter.SaveToFile(finalPath, cd);
-            }
+                if (!metaCenter.ContainsModified(exportTasks.Select(task => task.metaType).ToList()))
+                {
+                    Console.WriteLine("{0} is no change, skip generation", excelName);
+                }
+                else
+                {
+                    //-- Load Excel
+                    ExcelLoader excel = new ExcelLoader(excelPath);
+                    var tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
 
-            //-- export c#
-            if (options.csharpDir != null && options.csharpDir.Length > 0)
+                    foreach (var exportTask in exportTasks)
+                    {
+                        if (!metaCenter.IsModify(exportTask.metaType))
+                        {
+                            Console.WriteLine("{0} {1} data is no change, skip generation", excelName, exportTask.metaType);
+                            continue;
+                        }
+                        exportTask.function(tableInfos, excelName, exportTask.outputDir, cd);
+                        metaCenter.Modify(exportTask.metaType);
+                    }
+                }
+            }
+        }
+
+        private static void ExportCsharpFile(List<ExcelParser.TableInfo> tableInfos, string excelName, string outputDir, Encoding outputEncoding)
+        {
+            CSharpExporter csharpExporter = new CSharpExporter(tableInfos, excelName);
+            var finalPath = Path.Combine(outputDir, NameFormater.FormatCamelName(excelName, false) + ".cs");
+            csharpExporter.SaveToFile(finalPath, outputEncoding);
+        }
+
+        private static void ExportXmlFile(List<ExcelParser.TableInfo> tableInfos, string excelName, string outputDir, Encoding outputEncoding)
+        {
+            XmlExporter xmlExporter = new XmlExporter(tableInfos, excelName);
+            var finalPath = Path.Combine(outputDir, xmlExporter.m_strFileName + ".xml");
+            xmlExporter.SaveToFile(finalPath, outputEncoding);
+        }
+
+        private static void ExportJsonFile(List<ExcelParser.TableInfo> tableInfos, string excelName, string outputDir, Encoding outputEncoding)
+        {
+            JsonExporter jsonExporter = new JsonExporter(tableInfos, excelName);
+
+            var finalPath = Path.Combine(outputDir, NameFormater.FormatFileName(excelName) + ".json");
+            jsonExporter.SaveToFile(finalPath, outputEncoding);
+        }
+
+        private delegate void ExportFunction(List<ExcelParser.TableInfo> tableInfos, string excelName, string outputDir, Encoding outputEncoding);
+
+        private class ExportTask
+        {
+            public ExportFunction function;
+            public MetaCenter.MetaType metaType;
+            public string outputDir;
+
+            public ExportTask(ExportFunction function, MetaCenter.MetaType metaType, string outputDir)
             {
-                CSharpExporter csharpExporter = new CSharpExporter(tableInfos, excelName);
-                var finalPath = Path.Combine(options.csharpDir, NameFormater.FormatCamelName(excelName, false) + ".cs");
-                csharpExporter.SaveToFile(finalPath, cd);
+                this.function = function;
+                this.metaType = metaType;
+                this.outputDir = outputDir;
             }
         }
     }

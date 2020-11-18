@@ -15,8 +15,8 @@ namespace excel2json
         }
         
         private string metaFile;
-        private Dictionary<string, long> body;
-        private long fileModifyTime;
+        private Dictionary<string, string> body;
+        private string md5;
         
         public MetaCenter(string metaDir, string excelName, string excelPath)
         {
@@ -27,14 +27,14 @@ namespace excel2json
             
             if (!string.IsNullOrEmpty(metaFile) && File.Exists(metaFile))
             {
-                body = JsonConvert.DeserializeObject<Dictionary<string, long>>(File.ReadAllText(metaFile));
+                body = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(metaFile));
             }
             else
             {
-                body = new Dictionary<string, long>();
+                body = new Dictionary<string, string>();
             }
             
-            fileModifyTime = new FileInfo(excelPath).LastWriteTimeUtc.Ticks;
+            md5 = MD5Utility.GetMD5HashFromFile(excelPath);
         }
 
         /// <summary>
@@ -44,10 +44,10 @@ namespace excel2json
         /// <returns></returns>
         public bool IsModify(MetaType metaType)
         {
-            if (!body.TryGetValue(metaType.ToString(), out var time))
+            if (!body.TryGetValue(metaType.ToString(), out var lastMD5))
                 return true;
 
-            return time != fileModifyTime;
+            return lastMD5 != md5;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace excel2json
         /// <param name="metaType"></param>
         public void Modify(MetaType metaType)
         {
-            body[metaType.ToString()] = fileModifyTime;
+            body[metaType.ToString()] = md5;
         }
 
         /// <summary>

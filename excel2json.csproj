@@ -100,8 +100,6 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MD5Utility.cs" />
-    <Compile Include="MetaCenter.cs" />
     <Compile Include="NameFormater.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Program.Options.cs" />

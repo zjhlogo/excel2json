@@ -106,6 +106,17 @@ namespace excel2json.GUI
             string excelPath = options.excelPath;
             string excelName = Path.GetFileNameWithoutExtension(excelPath);
 
+            HashSet<string> exportTags = new HashSet<string>();
+            exportTags.Add("");
+            if (options.exportTags != null)
+            {
+                var tags = options.exportTags.Split(',');
+                foreach (var tag in tags)
+                {
+                    exportTags.Add(tag);
+                }
+            }
+
             //-- Encoding
             _encoding = new UTF8Encoding(false);
 
@@ -116,13 +127,13 @@ namespace excel2json.GUI
             List<ExcelParser.TableInfo> tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
 
             //-- 导出 json
-            _json = new JsonExporter(tableInfos, excelName);
+            _json = new JsonExporter(tableInfos, excelName, exportTags);
 
             //-- 导出 xml
-            _xml = new XmlExporter(tableInfos, excelName);
+            _xml = new XmlExporter(tableInfos, excelName, exportTags);
 
             //-- C# 结构体定义
-            _csharp = new CSharpExporter(tableInfos, excelName);
+            _csharp = new CSharpExporter(tableInfos, excelName, exportTags);
         }
     }
 }

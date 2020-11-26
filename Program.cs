@@ -74,6 +74,17 @@ namespace excel2json
                 throw new Exception("Excel文件不存在");
             }
 
+            HashSet<string> exportTags = new HashSet<string>();
+            exportTags.Add("");
+            if (options.exportTags != null)
+            {
+                var tags = options.exportTags.Split(',');
+                foreach (var tag in tags)
+                {
+                    exportTags.Add(tag);
+                }
+            }
+
             //-- Encoding
             Encoding cd = new UTF8Encoding(false);
 
@@ -89,8 +100,11 @@ namespace excel2json
                 if (!fileInfo.Exists || fileInfo.LastWriteTimeUtc.Ticks < excelFileInfo.LastWriteTimeUtc.Ticks)
                 {
                     if (tableInfos == null)
+                    {
                         tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
-                    JsonExporter jsonExporter = new JsonExporter(tableInfos, excelName);
+                    }
+
+                    JsonExporter jsonExporter = new JsonExporter(tableInfos, excelName, exportTags);
                     jsonExporter.SaveToFile(finalPath, cd);
                 }
             }
@@ -103,8 +117,11 @@ namespace excel2json
                 if (!fileInfo.Exists || fileInfo.LastWriteTimeUtc.Ticks < excelFileInfo.LastWriteTimeUtc.Ticks)
                 {
                     if (tableInfos == null)
+                    {
                         tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
-                    XmlExporter xmlExporter = new XmlExporter(tableInfos, excelName);
+                    }
+
+                    XmlExporter xmlExporter = new XmlExporter(tableInfos, excelName, exportTags);
                     xmlExporter.SaveToFile(finalPath, cd);
                 }
             }
@@ -117,8 +134,11 @@ namespace excel2json
                 if (!fileInfo.Exists || fileInfo.LastWriteTimeUtc.Ticks < excelFileInfo.LastWriteTimeUtc.Ticks)
                 {
                     if (tableInfos == null)
+                    {
                         tableInfos = ExcelParser.ReadSheetData(excel.Sheets[0]);
-                    CSharpExporter csharpExporter = new CSharpExporter(tableInfos, excelName);
+                    }
+
+                    CSharpExporter csharpExporter = new CSharpExporter(tableInfos, excelName, exportTags);
                     csharpExporter.SaveToFile(finalPath, cd);
                 }
             }

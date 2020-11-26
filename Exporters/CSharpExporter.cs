@@ -18,7 +18,7 @@ namespace excel2json
             }
         }
 
-        public CSharpExporter(List<ExcelParser.TableInfo> tableInfos, string excelName)
+        public CSharpExporter(List<ExcelParser.TableInfo> tableInfos, string excelName, HashSet<string> exportTags)
         {
             //-- 创建代码字符串
             StringBuilder sb = new StringBuilder();
@@ -44,11 +44,13 @@ namespace excel2json
                 sb.AppendLine();
                 for (int i = 0; i < tableInfo.numFields; i++)
                 {
-                    var fieldData = tableInfo.fieldInfos[i];
-
-                    var comment = NameFormater.FormatComment(fieldData.comment);
-                    sb.AppendFormat("    public {0} {1}; // {2}", fieldData.type, fieldData.name, comment);
-                    sb.AppendLine();
+                    var fieldInfo = tableInfo.fieldInfos[i];
+                    if (exportTags.Contains(fieldInfo.tag))
+                    {
+                        var comment = NameFormater.FormatComment(fieldInfo.comment);
+                        sb.AppendFormat("    public {0} {1}; // {2}", fieldInfo.type, fieldInfo.name, comment);
+                        sb.AppendLine();
+                    }
                 }
                 sb.Append('}');
                 sb.AppendLine();

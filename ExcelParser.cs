@@ -18,6 +18,7 @@ namespace excel2json
             public string type;
             public string name;
             public string comment;
+            public string tag;
             public List<object> datas = new List<object>();
         }
 
@@ -99,7 +100,12 @@ namespace excel2json
                 FieldInfo field = new FieldInfo();
                 field.comment = sheet.Rows[i][0].ToString();
                 field.type = sheet.Rows[i][1].ToString();
-                field.name = NameFormater.FormatCamelName(sheet.Rows[i][2].ToString(), true);
+
+                string name;
+                string tag;
+                NameFormater.GetNameAndTag(out name, out tag, sheet.Rows[i][2].ToString());
+                field.name = NameFormater.FormatCamelName(name, true);
+                field.tag = tag;
 
                 field.datas.Add(ConvertData(field.type, sheet.Rows[i][3].ToString()));
 
@@ -127,13 +133,19 @@ namespace excel2json
             for (int columnIndex = 0; columnIndex < sheet.Columns.Count; ++columnIndex)
             {
                 var type = sheet.Rows[typeIndex][columnIndex].ToString();
-                var name = NameFormater.FormatCamelName(sheet.Rows[nameIndex][columnIndex].ToString(), true);
+
+                string name;
+                string tag;
+                NameFormater.GetNameAndTag(out name, out tag, sheet.Rows[nameIndex][columnIndex].ToString());
+
+                name = NameFormater.FormatCamelName(name, true);
                 if (name == "" || type == "") break;
 
                 FieldInfo field = new FieldInfo();
                 field.comment = sheet.Rows[descIndex][columnIndex].ToString();
                 field.name = name;
                 field.type = type;
+                field.tag = tag;
 
                 for (int i = tableInfo.startRow + 4; i < tableInfo.endRow; ++i)
                 {

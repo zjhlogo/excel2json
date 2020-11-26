@@ -72,5 +72,35 @@ namespace excel2json
             return sb.ToString();
         }
 
+        public static void GetNameAndTag(out string name, out string tag, string unformatedName)
+        {
+            var startIndex = unformatedName.IndexOf('(');
+            var endIndex = unformatedName.LastIndexOf(')');
+            if (startIndex != -1)
+            {
+                name = unformatedName.Substring(0, startIndex);
+
+                if (endIndex != -1 && endIndex > startIndex)
+                {
+                    tag = unformatedName.Substring(startIndex + 1, endIndex - startIndex - 1);
+                }
+                else
+                {
+                    tag = unformatedName.Substring(startIndex + 1);
+                }
+            }
+            else
+            {
+                if (endIndex != -1)
+                {
+                    name = unformatedName.Substring(0, endIndex);
+                }
+                else
+                {
+                    name = unformatedName;
+                }
+                tag = "";
+            }
+        }
     }
 }

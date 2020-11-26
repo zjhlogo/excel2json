@@ -42,12 +42,12 @@ namespace excel2json
             }
         }
 
-        public XmlExporter(List<ExcelParser.TableInfo> tableInfos, string excelName)
+        public XmlExporter(List<ExcelParser.TableInfo> tableInfos, string excelName, HashSet<string> exportTags)
         {
-            _context = ConvertSheet(tableInfos, excelName);
+            _context = ConvertSheet(tableInfos, excelName, exportTags);
         }
 
-        public string ConvertSheet(List<ExcelParser.TableInfo> tableInfos, string excelName)
+        public string ConvertSheet(List<ExcelParser.TableInfo> tableInfos, string excelName, HashSet<string> exportTags)
         {
             ExcelParser.TableInfo attrs = null;
             ExcelParser.TableInfo table = null;
@@ -78,19 +78,22 @@ namespace excel2json
 
                 foreach (var fieldInfo in table.fieldInfos)
                 {
-                    var xmlColumn = doc.CreateElement("Column");
-
-                    string finalName = fieldInfo.name;
-                    string finalDataType = fieldInfo.type;
-                    if (_typeMap.TryGetValue(fieldInfo.type, out var mappingInfo))
+                    if (exportTags.Contains(fieldInfo.tag))
                     {
-                        finalName = mappingInfo.prefix + fieldInfo.name;
-                        finalDataType = mappingInfo.dataTypeIndex;
-                    }
+                        var xmlColumn = doc.CreateElement("Column");
 
-                    xmlColumn.SetAttribute("Name", finalName);
-                    xmlColumn.SetAttribute("DataType", finalDataType);
-                    xmlColumnList.AppendChild(xmlColumn);
+                        string finalName = fieldInfo.name;
+                        string finalDataType = fieldInfo.type;
+                        if (_typeMap.TryGetValue(fieldInfo.type, out var mappingInfo))
+                        {
+                            finalName = mappingInfo.prefix + fieldInfo.name;
+                            finalDataType = mappingInfo.dataTypeIndex;
+                        }
+
+                        xmlColumn.SetAttribute("Name", finalName);
+                        xmlColumn.SetAttribute("DataType", finalDataType);
+                        xmlColumnList.AppendChild(xmlColumn);
+                    }
                 }
             }
 
@@ -98,20 +101,23 @@ namespace excel2json
             {
                 foreach (var fieldInfo in attrs.fieldInfos)
                 {
-                    var xmlAttribute = doc.CreateElement("Attribute");
-                    xmlTable.AppendChild(xmlAttribute);
-
-                    string finalName = fieldInfo.name;
-                    string finalDataType = fieldInfo.type;
-                    if (_typeMap.TryGetValue(fieldInfo.type, out var mappingInfo))
+                    if (exportTags.Contains(fieldInfo.tag))
                     {
-                        finalName = mappingInfo.prefix + fieldInfo.name;
-                        finalDataType = mappingInfo.dataTypeIndex;
-                    }
+                        var xmlAttribute = doc.CreateElement("Attribute");
+                        xmlTable.AppendChild(xmlAttribute);
 
-                    xmlAttribute.SetAttribute("Name", finalName);
-                    xmlAttribute.SetAttribute("DataType", finalDataType);
-                    xmlAttribute.SetAttribute("Value", fieldInfo.datas[0].ToString());
+                        string finalName = fieldInfo.name;
+                        string finalDataType = fieldInfo.type;
+                        if (_typeMap.TryGetValue(fieldInfo.type, out var mappingInfo))
+                        {
+                            finalName = mappingInfo.prefix + fieldInfo.name;
+                            finalDataType = mappingInfo.dataTypeIndex;
+                        }
+
+                        xmlAttribute.SetAttribute("Name", finalName);
+                        xmlAttribute.SetAttribute("DataType", finalDataType);
+                        xmlAttribute.SetAttribute("Value", fieldInfo.datas[0].ToString());
+                    }
                 }
             }
 
@@ -122,16 +128,20 @@ namespace excel2json
                     var xmlRecord = doc.CreateElement("Record");
                     for (int j = 0; j < table.numFields; ++j)
                     {
-                        string finalName = table.fieldInfos[j].name;
-                        Func<object, string> convertor = ConvertDefault;
-
-                        if (_typeMap.TryGetValue(table.fieldInfos[j].type, out var mappingInfo))
+                        var fieldInfo = table.fieldInfos[j];
+                        if (exportTags.Contains(fieldInfo.tag))
                         {
-                            finalName = mappingInfo.prefix + table.fieldInfos[j].name;
-                            convertor = mappingInfo.convertor;
-                        }
+                            string finalName = fieldInfo.name;
+                            Func<object, string> convertor = ConvertDefault;
 
-                        xmlRecord.SetAttribute(finalName, convertor(table.fieldInfos[j].datas[i]));
+                            if (_typeMap.TryGetValue(fieldInfo.type, out var mappingInfo))
+                            {
+                                finalName = mappingInfo.prefix + fieldInfo.name;
+                                convertor = mappingInfo.convertor;
+                            }
+
+                            xmlRecord.SetAttribute(finalName, convertor(fieldInfo.datas[i]));
+                        }
                     }
 
                     xmlTable.AppendChild(xmlRecord);

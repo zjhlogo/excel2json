@@ -40,6 +40,14 @@ namespace excel2json
                 get;
                 set;
             }
+
+            [Option('t', "tags", Required = false, HelpText = "export by tags seperate by comma ','.")]
+            public string exportTags
+            {
+                get;
+                set;
+            }
+
         }
     }
 }

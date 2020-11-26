@@ -16,7 +16,7 @@ namespace excel2json
             }
         }
 
-        public JsonExporter(List<ExcelParser.TableInfo> tableInfos, string excelName)
+        public JsonExporter(List<TableInfo> tableInfos, string excelName, HashSet<string> exportTags)
         {
             var jsonSettings = new JsonSerializerSettings
             {
@@ -24,7 +24,7 @@ namespace excel2json
             };
 
             //-- convert to object
-            var fullDatas = ConvertSheet(tableInfos, excelName);
+            var fullDatas = ConvertSheet(tableInfos, excelName, exportTags);
             if (fullDatas.Count == 1)
             {
                 //-- convert to json string
@@ -40,7 +40,7 @@ namespace excel2json
             }
         }
 
-        private List<List<Dictionary<string, object>>> ConvertSheet(List<ExcelParser.TableInfo> tableInfos, string excelName)
+        private List<List<Dictionary<string, object>>> ConvertSheet(List<TableInfo> tableInfos, string excelName, HashSet<string> exportTags)
         {
             List<List<Dictionary<string, object>>> fullDatas = new List<List<Dictionary<string, object>>>();
             foreach (var tableInfo in tableInfos)
@@ -52,8 +52,12 @@ namespace excel2json
                     Dictionary<string, object> rowData = new Dictionary<string, object>();
                     for (int j = 0; j < tableInfo.numFields; ++j)
                     {
-                        var finalData = ConvertDataType(tableInfo.fieldInfos[j], tableInfo.fieldInfos[j].datas[i]);
-                        rowData.Add(tableInfo.fieldInfos[j].name, finalData);
+                        var fieldInfo = tableInfo.fieldInfos[j];
+                        if (exportTags.Contains(fieldInfo.tag))
+                        {
+                            var finalData = ConvertDataType(fieldInfo, fieldInfo.datas[i]);
+                            rowData.Add(tableInfo.fieldInfos[j].name, finalData);
+                        }
                     }
 
                     rowDatas.Add(rowData);
